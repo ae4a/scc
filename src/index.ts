@@ -10,21 +10,51 @@ class SheepHandler {
   ctx: CanvasRenderingContext2D;
 
   originalPixels: ImageData | null = null;
+  woolMask: ImageData | null = null;
+  skinMask: ImageData | null = null;
   currentPixels: ImageData | null = null;
-  newColor: Color = { r: 0, g: 0, b: 0 };
+  woolColor: Color = { r: 0, g: 0, b: 0 };
+  skinColor: Color = { r: 0, g: 0, b: 0 };
+
+  loadImgs = () => {
+    var img = this.sheepImg.get()[0] as HTMLImageElement;
+    this.canvas.width = img.width;
+    this.canvas.height = img.height;
+  
+    this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
+    this.currentPixels = this.ctx.getImageData(0, 0, img.width, img.height);
+    this.originalPixels = this.ctx.getImageData(0, 0, img.width, img.height);
+    console.log(this.currentPixels)
+
+    // Load wool mask
+    img = $("#sheepWoolMask").get()[0] as HTMLImageElement;
+
+    this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
+    this.woolMask = this.ctx.getImageData(0, 0, img.width, img.height);
+ 
+    // Load skin mask
+    img = $("#sheepSkinMask").get()[0] as HTMLImageElement;
+
+    this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
+    this.skinMask = this.ctx.getImageData(0, 0, img.width, img.height);
+ 
+  }
    
   updateSheep = () => {
-    if(!this.originalPixels || !this.currentPixels) {
+    if(!this.originalPixels || !this.currentPixels || !this.woolMask || !this.skinMask) {
       console.log("original or current pixels are null");
       return;
     }
+    console.log(this.originalPixels, this.woolMask)
   
     for(var I = 0, L = this.originalPixels.data.length; I < L; I += 4) {
-      if(this.currentPixels.data[I + 3] > 0) {
-        this.currentPixels.data[I + 0] = this.originalPixels.data[I + 0] / 255.0 * this.newColor.r;
-        this.currentPixels.data[I + 1] = this.originalPixels.data[I + 1] / 255.0 * this.newColor.g;
-        this.currentPixels.data[I + 2] = this.originalPixels.data[I + 2] / 255.0 * this.newColor.b;
-      }
+      const wm = this.woolMask.data[I];
+      const sm = this.skinMask.data[I];
+      const om = 255 * Math.max(255 - wm - sm, 0);
+
+      this.currentPixels.data[I + 0] = this.originalPixels.data[I + 0] * (om + this.woolColor.r * wm + this.skinColor.r * sm) / (255 * 255);
+      this.currentPixels.data[I + 1] = this.originalPixels.data[I + 1] * (om + this.woolColor.g * wm + this.skinColor.g * sm) / (255 * 255);
+      this.currentPixels.data[I + 2] = this.originalPixels.data[I + 2] * (om + this.woolColor.b * wm + this.skinColor.b * sm) / (255 * 255);
     }
 
     console.log("originalPixels")
@@ -34,13 +64,17 @@ class SheepHandler {
 
   }
 
+  parseRGB( hex: number ): Color {
+    return {
+      r:  (hex >> 16) & 0xFF,
+      g:  (hex >> 8) & 0xFF,
+      b:  hex & 0xFF,
+    }
+  }
+
   updateColors = () => {
-    const colorHex = parseInt(String($("#colorPicker").val()).replace(/^#/, ""), 16);
-    console.log(colorHex)
-    this.newColor.r = (colorHex >> 16) & 0xFF;
-    this.newColor.g = (colorHex >> 8) & 0xFF;
-    this.newColor.b = colorHex & 0xFF; 
-    console.log(this.newColor);
+    this.woolColor = this.parseRGB(parseInt(String($("#woolColorPicker").val()).replace(/^#/, ""), 16));
+    this.skinColor = this.parseRGB(parseInt(String($("#skinColorPicker").val()).replace(/^#/, ""), 16));
   }
 
   constructor( newSheepImg: JQuery<HTMLElement>, newCanvas: HTMLCanvasElement, newCtx: CanvasRenderingContext2D ) {
@@ -48,21 +82,12 @@ class SheepHandler {
     this.canvas = newCanvas;
     this.ctx = newCtx;
 
-    this.sheepImg.on("load", ( imgEvent ) => {
-      const img = imgEvent.target as HTMLImageElement;
-      this.canvas.width = img.width;
-      this.canvas.height = img.height;
-    
-      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
-      this.currentPixels = this.ctx.getImageData(0, 0, img.width, img.height);
-      this.originalPixels = this.ctx.getImageData(0, 0, img.width, img.height);
-      console.log(this.currentPixels)
-    
-      this.sheepImg.off("load");
-    });
-
+    // Load sheep image
+    $("window").ready(this.loadImgs);
+  
     $("#changeColorButton").on("click", this.updateSheep);
-    $("#colorPicker").on("change", this.updateColors);
+    $("#woolColorPicker").on("change", this.updateColors);
+    $("#skinColorPicker").on("change", this.updateColors);
   }
 }
 

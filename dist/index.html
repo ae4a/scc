@@ -19,14 +19,22 @@
       grid-column: 2;
       grid-row: 2;
       background: gray;
+      overflow: hidden;
     ">
       <img src="images/sheep.jpg" id="sheepImg" style="width: 100%;"/>
+      <img src="images/sheep_wool_mask.jpg" id="sheepWoolMask" style="width: 100%; visibility: hidden;"/>
+      <img src="images/sheep_skin_mask.jpg" id="sheepSkinMask" style="width: 100%; visibility: hidden;"/>
     </div>
     <div style="
-      grid-column: 2;
-      grid-row: 3;
+      grid-column: 3;
+      grid-row: 2;
     ">
-      <input type="color" id="colorPicker" value="#6491ee"/>
+      <div>
+        <input type="color" id="woolColorPicker" value="#ffffff"/>
+      </div>
+      <div>
+        <input type="color" id="skinColorPicker" value="#ffffff"/>
+      </div>
       <input type="button" id="changeColorButton" value="change color">
     </div>
     <script src="scripts/index.js"></script>
