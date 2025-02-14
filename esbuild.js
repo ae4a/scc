@@ -3,7 +3,7 @@ const esbuild = require("esbuild")
 esbuild
   .build({
     entryPoints: ["src/index.ts"],
-    outdir: "dist",
+    outdir: "dist/scripts",
     bundle: true,
     minify: false,
     plugins: [],

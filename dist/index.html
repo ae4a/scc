@@ -15,9 +15,20 @@
     grid-template-columns: 1fr 3fr 1fr;
     grid-template-rows: 1fr 8fr 1fr;
   ">
-    <script src="index.js"></script>
-    <div>
-
+    <div style="
+      grid-column: 2;
+      grid-row: 2;
+      background: gray;
+    ">
+      <img src="images/sheep.jpg" id="sheepImg" style="width: 100%;"/>
     </div>
+    <div style="
+      grid-column: 2;
+      grid-row: 3;
+    ">
+      <input type="color" id="colorPicker" value="#6491ee"/>
+      <input type="button" id="changeColorButton" value="change color">
+    </div>
+    <script src="scripts/index.js"></script>
   </body>
 </html>
