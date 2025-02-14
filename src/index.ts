@@ -17,27 +17,37 @@ class SheepHandler {
   skinColor: Color = { r: 0, g: 0, b: 0 };
 
   loadImgs = () => {
-    var img = this.sheepImg.get()[0] as HTMLImageElement;
-    this.canvas.width = img.width;
-    this.canvas.height = img.height;
-  
-    this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
-    this.currentPixels = this.ctx.getImageData(0, 0, img.width, img.height);
-    this.originalPixels = this.ctx.getImageData(0, 0, img.width, img.height);
-    console.log(this.currentPixels)
+    if (!this.currentPixels) {
+      console.log("sheep load")
+      var img = this.sheepImg.get()[0] as HTMLImageElement;
+      this.canvas.width = img.width;
+      this.canvas.height = img.height;
+    
+      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
+      this.currentPixels = this.ctx.getImageData(0, 0, img.width, img.height);
+      this.originalPixels = this.ctx.getImageData(0, 0, img.width, img.height);
+    }
 
     // Load wool mask
-    img = $("#sheepWoolMask").get()[0] as HTMLImageElement;
+    if (!this.woolMask) {
+      console.log("wool");
+      img = $("#sheepWoolMask").get()[0] as HTMLImageElement;
+      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
+      this.woolMask = this.ctx.getImageData(0, 0, img.width, img.height);
+    }
 
-    this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
-    this.woolMask = this.ctx.getImageData(0, 0, img.width, img.height);
- 
     // Load skin mask
-    img = $("#sheepSkinMask").get()[0] as HTMLImageElement;
+    if (!this.skinMask) {
+      console.log("skin")
+      img = $("#sheepSkinMask").get()[0] as HTMLImageElement;
+      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
+      this.skinMask = this.ctx.getImageData(0, 0, img.width, img.height);
+    }
 
-    this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
-    this.skinMask = this.ctx.getImageData(0, 0, img.width, img.height);
- 
+    if (!this.currentPixels || !this.woolMask || !this.skinMask) {
+      console.log("again...");
+      setTimeout(this.loadImgs, 100);
+    }
   }
    
   updateSheep = () => {
@@ -48,20 +58,18 @@ class SheepHandler {
     console.log(this.originalPixels, this.woolMask)
   
     for(var I = 0, L = this.originalPixels.data.length; I < L; I += 4) {
-      const wm = this.woolMask.data[I];
-      const sm = this.skinMask.data[I];
-      const om = 255 * Math.max(255 - wm - sm, 0);
+      const wm = this.woolMask.data[I] / 255;
+      const sm = this.skinMask.data[I] / 255;
 
-      this.currentPixels.data[I + 0] = this.originalPixels.data[I + 0] * (om + this.woolColor.r * wm + this.skinColor.r * sm) / (255 * 255);
-      this.currentPixels.data[I + 1] = this.originalPixels.data[I + 1] * (om + this.woolColor.g * wm + this.skinColor.g * sm) / (255 * 255);
-      this.currentPixels.data[I + 2] = this.originalPixels.data[I + 2] * (om + this.woolColor.b * wm + this.skinColor.b * sm) / (255 * 255);
+      this.currentPixels.data[I + 0] = this.originalPixels.data[I + 0] * (this.woolColor.r * wm + (this.skinColor.r * sm + 255 * (1 - sm)) * (1 - wm)) / 255;
+      this.currentPixels.data[I + 1] = this.originalPixels.data[I + 1] * (this.woolColor.g * wm + (this.skinColor.g * sm + 255 * (1 - sm)) * (1 - wm)) / 255;
+      this.currentPixels.data[I + 2] = this.originalPixels.data[I + 2] * (this.woolColor.b * wm + (this.skinColor.b * sm + 255 * (1 - sm)) * (1 - wm)) / 255;
     }
 
     console.log("originalPixels")
   
     this.ctx.putImageData(this.currentPixels, 0, 0);
     (this.sheepImg.get()[0] as HTMLImageElement).src = this.canvas.toDataURL("image/png");
-
   }
 
   parseRGB( hex: number ): Color {
