@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/jquery": "^3.5.31",
+    "imagesloaded": "^5.0.0",
     "jquery": "^3.7.1",
     "jsdom": "^25.0.1"
   },

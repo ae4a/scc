@@ -1,3 +1,5 @@
+import imagesloaded from "imagesloaded";
+
 class Color {
   r: number;
   g: number;
@@ -17,45 +19,61 @@ class SheepHandler {
   skinColor: Color = { r: 0, g: 0, b: 0 };
 
   loadImgs = () => {
-    if (!this.currentPixels) {
-      console.log("sheep load")
-      var img = this.sheepImg.get()[0] as HTMLImageElement;
+    imagesloaded.makeJQueryPlugin($);
+    // @ts-ignore
+    this.sheepImg.imagesLoaded(() => {
+
+      console.log("sheep start")
+      const img = this.sheepImg.get()[0] as HTMLImageElement;
       this.canvas.width = img.width;
       this.canvas.height = img.height;
     
       this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
       this.currentPixels = this.ctx.getImageData(0, 0, img.width, img.height);
       this.originalPixels = this.ctx.getImageData(0, 0, img.width, img.height);
-    }
+      console.log(this.originalPixels)
+      console.log("sheep end")
+    });
 
     // Load wool mask
-    if (!this.woolMask) {
-      console.log("wool");
-      img = $("#sheepWoolMask").get()[0] as HTMLImageElement;
+    // @ts-ignore
+    $("#sheepWoolMask").imagesLoaded(() => { 
+      if (!this.currentPixels) {
+        console.log("w")
+        setTimeout(() => $("#sheepWoolMask").trigger("load"), 100);
+        return;
+      }
+      console.log("wool start");
+      const img = $("#sheepWoolMask").get()[0] as HTMLImageElement;
       this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
       this.woolMask = this.ctx.getImageData(0, 0, img.width, img.height);
-    }
+      console.log(this.woolMask)
+      console.log("wool end");
+    });
 
     // Load skin mask
-    if (!this.skinMask) {
-      console.log("skin")
-      img = $("#sheepSkinMask").get()[0] as HTMLImageElement;
+    // @ts-ignore
+    $("#sheepSkinMask").imagesLoaded(() => {
+      if (!this.woolMask) {
+        console.log("s")
+        setTimeout(() => $("#sheepSkinMask").trigger("load"), 100);
+        return;
+      }
+      console.log("skin start")
+      const img = $("#sheepSkinMask").get()[0] as HTMLImageElement;
       this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
       this.skinMask = this.ctx.getImageData(0, 0, img.width, img.height);
-    }
-
-    if (!this.currentPixels || !this.woolMask || !this.skinMask) {
-      console.log("again...");
-      setTimeout(this.loadImgs, 100);
-    }
+      console.log(this.skinMask)
+      console.log("skin end");
+    });
   }
    
   updateSheep = () => {
     if(!this.originalPixels || !this.currentPixels || !this.woolMask || !this.skinMask) {
-      console.log("original or current pixels are null");
+      console.log("somebody is null");
       return;
     }
-    console.log(this.originalPixels, this.woolMask)
+    console.log(this.originalPixels, this.woolMask, this.skinMask)
   
     for(var I = 0, L = this.originalPixels.data.length; I < L; I += 4) {
       const wm = this.woolMask.data[I] / 255;
@@ -91,7 +109,7 @@ class SheepHandler {
     this.ctx = newCtx;
 
     // Load sheep image
-    $("window").ready(this.loadImgs);
+    this.loadImgs();
   
     $("#changeColorButton").on("click", this.updateSheep);
     $("#woolColorPicker").on("change", this.updateColors);
