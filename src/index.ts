@@ -18,59 +18,65 @@ class SheepHandler {
   woolColor: Color = { r: 0, g: 0, b: 0 };
   skinColor: Color = { r: 0, g: 0, b: 0 };
 
+  loadSheepImg = () => {
+    console.log("sheep start")
+    const img = this.sheepImg.get()[0] as HTMLImageElement;
+    this.canvas.width = img.width;
+    this.canvas.height = img.height;
+  
+    this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
+    this.currentPixels = this.ctx.getImageData(0, 0, img.width, img.height);
+    this.originalPixels = this.ctx.getImageData(0, 0, img.width, img.height);
+    console.log(this.originalPixels)
+    console.log("sheep end")
+  }
+
+  loadWoolImg = () => {
+    if (!this.currentPixels) {
+      // Because if I does not control order images will be messed up... I dont know why...
+      console.log("w")
+      setTimeout(this.loadWoolImg, 100);
+      return;
+    }
+    console.log("wool start");
+    const img = $("#sheepWoolMask").get()[0] as HTMLImageElement;
+    this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
+    this.woolMask = this.ctx.getImageData(0, 0, img.width, img.height);
+    console.log(this.woolMask)
+    console.log("wool end");
+  }
+
+  loadSkinImg = () => {
+    if (!this.woolMask) {
+      console.log("s")
+      setTimeout(this.loadSkinImg, 100);
+      return;
+    }
+    console.log("skin start")
+    const img = $("#sheepSkinMask").get()[0] as HTMLImageElement;
+    this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
+    this.skinMask = this.ctx.getImageData(0, 0, img.width, img.height);
+    console.log(this.skinMask)
+    console.log("skin end");
+  }
+
   loadImgs = () => {
     imagesloaded.makeJQueryPlugin($);
     // @ts-ignore
-    this.sheepImg.imagesLoaded(() => {
-
-      console.log("sheep start")
-      const img = this.sheepImg.get()[0] as HTMLImageElement;
-      this.canvas.width = img.width;
-      this.canvas.height = img.height;
-    
-      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
-      this.currentPixels = this.ctx.getImageData(0, 0, img.width, img.height);
-      this.originalPixels = this.ctx.getImageData(0, 0, img.width, img.height);
-      console.log(this.originalPixels)
-      console.log("sheep end")
-    });
+    this.sheepImg.imagesLoaded(this.loadSheepImg);
 
     // Load wool mask
     // @ts-ignore
-    $("#sheepWoolMask").imagesLoaded(() => { 
-      if (!this.currentPixels) {
-        console.log("w")
-        setTimeout(() => $("#sheepWoolMask").trigger("load"), 100);
-        return;
-      }
-      console.log("wool start");
-      const img = $("#sheepWoolMask").get()[0] as HTMLImageElement;
-      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
-      this.woolMask = this.ctx.getImageData(0, 0, img.width, img.height);
-      console.log(this.woolMask)
-      console.log("wool end");
-    });
+    $("#sheepWoolMask").imagesLoaded(this.loadWoolImg);
 
     // Load skin mask
     // @ts-ignore
-    $("#sheepSkinMask").imagesLoaded(() => {
-      if (!this.woolMask) {
-        console.log("s")
-        setTimeout(() => $("#sheepSkinMask").trigger("load"), 100);
-        return;
-      }
-      console.log("skin start")
-      const img = $("#sheepSkinMask").get()[0] as HTMLImageElement;
-      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
-      this.skinMask = this.ctx.getImageData(0, 0, img.width, img.height);
-      console.log(this.skinMask)
-      console.log("skin end");
-    });
+    $("#sheepSkinMask").imagesLoaded(this.loadSkinImg);
   }
    
   updateSheep = () => {
     if(!this.originalPixels || !this.currentPixels || !this.woolMask || !this.skinMask) {
-      console.log("somebody is null");
+      alert("ERROR: images did not load correctly :( Try refresh the page.")
       return;
     }
     console.log(this.originalPixels, this.woolMask, this.skinMask)
