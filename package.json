@@ -1,0 +1,19 @@
+{
+  "name": "scc",
+  "version": "1.0.0",
+  "description": "Sheep color customizer",
+  "main": "index.ts",
+  "scripts": {
+    "build": "node esbuild.js"
+  },
+  "author": "AE4",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jquery": "^3.5.31",
+    "jquery": "^3.7.1",
+    "jsdom": "^25.0.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}
