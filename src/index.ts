@@ -1,3 +1,5 @@
+import { Dropdown, DropdownOption } from "./dropdown";
+
 class Color {
   r: number;
   g: number;
@@ -123,3 +125,23 @@ function main() {
 }
 
 main();
+
+
+// Dropdown menu test
+
+const options: DropdownOption[] = [
+  {
+    text: "First",
+    color: "red",
+    value: "1",
+  },
+  {
+    text: "Second",
+    color: "blue",
+    value: "2",
+  }
+];
+
+const dd = new Dropdown($("#woolSelect"), options, options[0]);
+
+
