@@ -1,5 +1,3 @@
-import imagesloaded from "imagesloaded";
-
 class Color {
   r: number;
   g: number;
@@ -19,19 +17,18 @@ class SheepHandler {
   skinColor: Color = { r: 0, g: 0, b: 0 };
 
   loadImgs = () => {
-    imagesloaded.makeJQueryPlugin($);
-
+    this.canvas.width = (this.sheepImg.get()[0] as HTMLImageElement).width;
+    this.canvas.height = (this.sheepImg.get()[0] as HTMLImageElement).height;
+    
     // Load sheep image
     const sheepImage = new Image();
     sheepImage.onload = () => {
       console.log("sheep start")
       const img = sheepImage;
-      this.canvas.width = img.width;
-      this.canvas.height = img.height;
     
-      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
-      this.currentPixels = this.ctx.getImageData(0, 0, img.width, img.height);
-      this.originalPixels = this.ctx.getImageData(0, 0, img.width, img.height);
+      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, this.canvas.width, this.canvas.height);
+      this.currentPixels = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+      this.originalPixels = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
       console.log(this.originalPixels)
       console.log("sheep end")
     }
@@ -42,8 +39,9 @@ class SheepHandler {
     woolMaskImage.onload = () => {
       console.log("wool start");
       const img = woolMaskImage;
-      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
-      this.woolMask = this.ctx.getImageData(0, 0, img.width, img.height);
+
+      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, this.canvas.width, this.canvas.height);
+      this.woolMask = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
       console.log(this.woolMask)
       console.log("wool end");
     }
@@ -54,8 +52,9 @@ class SheepHandler {
     skinMaskImage.onload = () => {
       console.log("skin start")
       const img = skinMaskImage;
-      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, img.width, img.height);
-      this.skinMask = this.ctx.getImageData(0, 0, img.width, img.height);
+
+      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, this.canvas.width, this.canvas.height);
+      this.skinMask = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
       console.log(this.skinMask)
       console.log("skin end");
     }
