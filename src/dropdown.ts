@@ -20,14 +20,14 @@ export class Dropdown {
   public onchange: ( value: string ) => void;
 
   change( o: DropdownOption ) {
+    this.buttonElement.html(o.text);
+    this.buttonElement.css("background-color", o.color);
+    this.buttonElement.css("color", o.textColor ? o.textColor : "var(--light)");
     if (!this.onchange) {
       alert("onchage is null");
       return;
     }
     this.onchange(o.value);
-    this.buttonElement.html(o.text);
-    this.buttonElement.css("background-color", o.color);
-    this.buttonElement.css("color", o.textColor ? o.textColor : "var(--light)");
   }
 
   constructor( container: JQuery<HTMLElement>, options: DropdownOption[], name: string ) {

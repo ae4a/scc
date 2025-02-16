@@ -15,44 +15,32 @@
     margin: 0;
   ">
     <div style="
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    overflow: hidden;
-    margin: 0;
-    display: grid;
-    align-content: center;
-  ">
-    <img src="images/sheep.jpg" id="sheepImg" style="width: 100%;"/>
-    </div>
-    <div style="
       position: absolute;
-      z-index: 10;
+      right: 0;
       top: 0;
-      left: 0;
+      bottom: 0;
+      overflow: hidden;
+      margin: 0;
+      display: grid;
+      align-content: center;
     ">
-      <div>
-        <input type="color" id="woolColorPicker" value="#ffffff"/>
-      </div>
-      <div>
-        <input type="color" id="skinColorPicker" value="#ffffff"/>
-      </div>
-      <input type="button" id="changeColorButton" value="change color">
+      <img src="images/sheep.jpg" id="sheepImg" style="width: 100%;"/>
     </div>
     <div style="
       position: absolute;
       z-index: 10;
       top: 20%;
-      right: 20%;
+      right: 4%;
     ">
-      <h2>New menu:</h2>
-      <div id="woolSelect"></div>
-      <div id="skinSelect" style="margin-top: 1em;"></div>
+      <div style="display: flex; align-items: center;">
+        <h2 style="color: var(--light); margin-inline: 10px;">Цвет шерстки:</h2>
+        <div id="woolSelect"></div>
+      </div>
+      <div style="display: flex; align-items: center;">
+        <h2 style="color: var(--light); margin-inline: 10px;">Цвет кожи:</h2>
+        <div id="skinSelect"></div>
+      </div>
     </div>
-    
     <script src="scripts/index.js"></script>
   </body>
-  <div style="overflow: hidden;">
-    </div>
 </html>
