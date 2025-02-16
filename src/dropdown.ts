@@ -68,11 +68,13 @@ export class Dropdown {
       optionE.appendTo(this.contentContainer);
     });
 
-    document.onclick = ( e ) => {
+    document.addEventListener("click", ( e ) => {
+      console.log(e.target);
+      console.log(!e.target, !this.optionsElements.includes(e.target as HTMLElement), (e.target as HTMLElement) != this.buttonElement.get()[0]);
       if (!e.target)
         return;
       if (!this.optionsElements.includes(e.target as HTMLElement) && (e.target as HTMLElement) != this.buttonElement.get()[0])
         this.contentContainer.addClass("hidden");
-    }
+    });
   }
 }
