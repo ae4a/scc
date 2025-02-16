@@ -1,12 +1,15 @@
 [
-  {
-    "text": "Розовый",
-    "color": "#f283b9",
-    "value": "#f283b9"
-  },
-  {
-    "text": "Голубой",
-    "color": "#6cc6ee",
-    "value": "#6cc6ee"
-  }
+  {"text": "Белый", "color": "#EBEFF7", "value": "#EBEFF7"},
+  {"text": "Бежевый", "color": "#9D8B86", "value": "#9D8B86"},
+  {"text": "Голубой", "color": "#90AFD6", "value": "#90AFD6"},
+  {"text": "Розовый", "color": "#D9B3D1", "value": "#D9B3D1"},
+  {"text": "Желтый", "color": "#E5CA12", "value": "#E5CA12"},
+  {"text": "Бирюзовый", "color": "#64B6AE", "value": "#64B6AE"},
+  {"text": "Песочный", "color": "#C7BFBF", "value": "#C7BFBF"},
+  {"text": "Пыльно-розовый", "color": "#96779E", "value": "#96779E"},
+  {"text": "Сиреньевый", "color": "#5069AD", "value": "#5069AD"},
+  {"text": "Малиновый", "color": "#C30E5A", "value": "#C30E5A"},
+  {"text": "Фуксия", "color": "#AB0F59", "value": "#AB0F59"},
+  {"text": "Салатовый", "color": "#C2DA9A", "value": "#C2DA9A"},
+  {"text": "Лавандовый", "color": "#AFA1D2", "value": "#AFA1D2"}
 ]
