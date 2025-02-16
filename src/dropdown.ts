@@ -1,38 +1,73 @@
 export class DropdownOption {
   text: string;
+  backColor: string;
   color: string;
   value: string;
 }
 
 export class Dropdown {
+  // Global data
+  // options: DropdownOption[] = [];
+
+  // JQuery elements
   container: JQuery<HTMLElement>;
-  options: DropdownOption[] = [];
-  optionsElements: JQuery<HTMLElement>[] = [];
+  buttonElement: JQuery<HTMLInputElement>;
+  optionsElements: HTMLElement[] = [];
+  activeOptionElement: JQuery<HTMLElement>;
+  contentContainer: JQuery<HTMLElement>;
+
+  // Callbacks
   public onchange: ( value: string ) => void;
 
-  constructor( container: JQuery<HTMLElement>, options: DropdownOption[], defaultOption: number ) {
+  change( o: DropdownOption ) {
+    if (!this.onchange) {
+      alert("onchage is null");
+      return;
+    }
+    this.onchange(o.value);
+    this.buttonElement.html(o.text);
+    this.buttonElement.css("background-color", o.backColor);
+    this.buttonElement.css("color", o.color);
+  }
+
+  constructor( container: JQuery<HTMLElement>, options: DropdownOption[], name: string ) {
     this.container = container;
-    this.options = options;
+    // this.options = options;
 
-    const buttonE = $('<button class="dropbtn">Dropdown</button>')
-    buttonE.appendTo(this.container);
-
-    const contentE = $('<div class="dropdown-content"></div>');
-
-    options.map( ( o: DropdownOption ) => {
-      const optionE = $(`<li class="dropdown-option" style="background-color: ${o.color};" value="${o.value}">${o.text}</li>`);
-      optionE.on("click", () => {
-        if (!this.onchange) {
-          alert("onchage is null");
-          return;
-        }
-        this.onchange(o.value);
-      });
-
-      this.optionsElements.push(optionE);
-      optionE.appendTo(contentE);
+    // Create button
+    this.buttonElement = $(`<button class="dropdown-button">${name}</button>`)
+    this.buttonElement.on("click", () => {
+      this.contentContainer.toggleClass("hidden");
     });
-    
-    contentE.appendTo(this.container);
+    this.buttonElement.appendTo(this.container);
+
+    // Create options container
+    this.contentContainer = $('<div class="dropdown-content hidden"></div>');
+    this.contentContainer.appendTo(this.container);
+
+    // Create options
+    options.map( ( o: DropdownOption ) => {
+      const optionE = $(`<div class="dropdown-option" style="background-color: ${o.backColor}; color: ${o.color}" value="${o.value}">${o.text}</div>`);
+      optionE.on("click", () => {
+        console.log(o);
+        this.change(o);
+        this.contentContainer.addClass("hidden");
+        if (this.activeOptionElement) {
+          this.activeOptionElement.removeClass("active");
+        }
+        optionE.addClass("active");
+        this.activeOptionElement = optionE;
+     });
+
+      this.optionsElements.push(optionE.get()[0]);
+      optionE.appendTo(this.contentContainer);
+    });
+
+    document.onclick = ( e ) => {
+      if (!e.target)
+        return;
+      if (!this.optionsElements.includes(e.target as HTMLElement) && (e.target as HTMLElement) != this.buttonElement.get()[0])
+        this.contentContainer.addClass("hidden");
+    }
   }
 }

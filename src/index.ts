@@ -106,10 +106,7 @@ class SheepHandler {
     // Load sheep image
     this.loadImgs();
   
-    $("#changeColorButton").on("click", this.updateSheep);
-    $("#woolColorPicker").on("change", this.updateColors);
-    $("#skinColorPicker").on("change", this.updateColors);
-  }
+ }
 }
 
 function main() {
@@ -119,29 +116,96 @@ function main() {
     alert("Error creating context");
     return;
   }
-  
-  const sheepHandler = new SheepHandler($("#sheepImg"), canvas, ctx);
-  sheepHandler.updateColors();
+ 
+  // Dropdown menu test
+  const options: DropdownOption[] = [
+    {
+      text: "Розовый",
+      backColor: "#f283b9",
+      color: "var(--dark)",
+      value: "#f283b9",
+    },
+    {
+      text: "Розовый",
+      backColor: "#f283b9",
+      color: "var(--dark)",
+      value: "#f283b9",
+    },
+    {
+      text: "Розовый",
+      backColor: "#f283b9",
+      color: "var(--dark)",
+      value: "#f283b9",
+    },
+    {
+      text: "Розовый",
+      backColor: "#f283b9",
+      color: "var(--dark)",
+      value: "#f283b9",
+    },
+    {
+      text: "Розовый",
+      backColor: "#f283b9",
+      color: "var(--dark)",
+      value: "#f283b9",
+    },
+    {
+      text: "Розовый",
+      backColor: "#f283b9",
+      color: "var(--dark)",
+      value: "#f283b9",
+    },
+    {
+      text: "Розовый",
+      backColor: "#f283b9",
+      color: "var(--dark)",
+      value: "#f283b9",
+    },
+    {
+      text: "Розовый",
+      backColor: "#f283b9",
+      color: "var(--dark)",
+      value: "#f283b9",
+    },
+    {
+      text: "Розовый",
+      backColor: "#f283b9",
+      color: "var(--dark)",
+      value: "#f283b9",
+    },
+    {
+      text: "Розовый",
+      backColor: "#f283b9",
+      color: "var(--dark)",
+      value: "#f283b9",
+    },
+    {
+      text: "Розовый",
+      backColor: "#f283b9",
+      color: "var(--dark)",
+      value: "#f283b9",
+    },
+    {
+      text: "Голубой",
+      backColor: "#6cc6ee",
+      color: "var(--dark)",
+      value: "#6cc6ee",
+    }
+  ];
+
+  const dd = new Dropdown($("#woolSelect"), options, "Select the color");
+  dd.onchange = ( v: string ) => {
+    console.log(v) ;
+  } 
+
+  const sheep = new SheepHandler($("#sheepImg"), canvas, ctx);
+  sheep.updateColors();
+
+  $("#changeColorButton").on("click", sheep.updateSheep);
+  $("#woolColorPicker").on("change", sheep.updateColors);
+  $("#skinColorPicker").on("change", sheep.updateColors);
 }
 
 main();
-
-
-// Dropdown menu test
-
-const options: DropdownOption[] = [
-  {
-    text: "First",
-    color: "red",
-    value: "1",
-  },
-  {
-    text: "Second",
-    color: "blue",
-    value: "2",
-  }
-];
-
-const dd = new Dropdown($("#woolSelect"), options, options[0]);
 
 
