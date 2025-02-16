@@ -118,7 +118,7 @@ function toRGB( hex: number ): Color {
   }
 }
 
-function main() {
+async function main() {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   if (!ctx) {
@@ -128,27 +128,19 @@ function main() {
   
   const sheep = new SheepHandler($("#sheepImg"), canvas, ctx);
  
-  // Dropdown menu test
-  const options: DropdownOption[] = [
-    {
-      text: "Розовый",
-      color: "#f283b9",
-      value: "#f283b9",
-    },
-    {
-      text: "Голубой",
-      color: "#6cc6ee",
-      value: "#6cc6ee",
-    }
-  ];
-
-  const wool = new Dropdown($("#woolSelect"), options, "Select wool color");
+  // Dropdown menus
+  
+  // Wool
+  const woolColors: DropdownOption[] = await $.getJSON("configs/wool.json");
+  const wool = new Dropdown($("#woolSelect"), woolColors, "Select wool color");
   wool.onchange = ( v: string ) => {
     sheep.setWoolColor(toRGB(parseInt(v.replace(/^#/, ""), 16)));
     sheep.updateImg();
   } 
 
-  const skin = new Dropdown($("#skinSelect"), options, "Select skin color");
+  // Skin
+  const skinColors: DropdownOption[] = await $.getJSON("configs/skin.json");
+  const skin = new Dropdown($("#skinSelect"), skinColors, "Select skin color");
   skin.onchange = ( v: string ) => {
     sheep.setSkinColor(toRGB(parseInt(v.replace(/^#/, ""), 16)));
     sheep.updateImg();
