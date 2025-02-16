@@ -1,7 +1,15 @@
+import { Dropdown, DropdownOption } from "./dropdown";
+
 class Color {
   r: number;
   g: number;
   b: number;
+
+  constructor( r: number, g: number, b: number ) {
+    this.r = r;
+    this.g = g;
+    this.b = b;
+  }
 }
 
 class SheepHandler {
@@ -13,8 +21,8 @@ class SheepHandler {
   woolMask: ImageData | null = null;
   skinMask: ImageData | null = null;
   currentPixels: ImageData | null = null;
-  woolColor: Color = { r: 0, g: 0, b: 0 };
-  skinColor: Color = { r: 0, g: 0, b: 0 };
+  woolColor: Color = { r: 255, g: 255, b: 255 };
+  skinColor: Color = { r: 255, g: 255, b: 255 };
 
   loadImgs = () => {
     this.canvas.width = (this.sheepImg.get()[0] as HTMLImageElement).width;
@@ -61,7 +69,7 @@ class SheepHandler {
     skinMaskImage.src = "images/sheep_skin_mask.jpg";
   }
    
-  updateSheep = () => {
+  updateImg = () => {
     if(!this.originalPixels || !this.currentPixels || !this.woolMask || !this.skinMask) {
       alert("ERROR: images did not load correctly :( Try refresh the page.")
       return;
@@ -83,17 +91,12 @@ class SheepHandler {
     (this.sheepImg.get()[0] as HTMLImageElement).src = this.canvas.toDataURL("image/png");
   }
 
-  parseRGB( hex: number ): Color {
-    return {
-      r:  (hex >> 16) & 0xFF,
-      g:  (hex >> 8) & 0xFF,
-      b:  hex & 0xFF,
-    }
+  setWoolColor( c: Color ) {
+    this.woolColor = c;
   }
 
-  updateColors = () => {
-    this.woolColor = this.parseRGB(parseInt(String($("#woolColorPicker").val()).replace(/^#/, ""), 16));
-    this.skinColor = this.parseRGB(parseInt(String($("#skinColorPicker").val()).replace(/^#/, ""), 16));
+  setSkinColor( c: Color ) {
+    this.skinColor = c;
   }
 
   constructor( newSheepImg: JQuery<HTMLElement>, newCanvas: HTMLCanvasElement, newCtx: CanvasRenderingContext2D ) {
@@ -104,13 +107,18 @@ class SheepHandler {
     // Load sheep image
     this.loadImgs();
   
-    $("#changeColorButton").on("click", this.updateSheep);
-    $("#woolColorPicker").on("change", this.updateColors);
-    $("#skinColorPicker").on("change", this.updateColors);
+ }
+}
+
+function toRGB( hex: number ): Color {
+  return {
+    r:  (hex >> 16) & 0xFF,
+    g:  (hex >> 8) & 0xFF,
+    b:  hex & 0xFF,
   }
 }
 
-function main() {
+async function main() {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   if (!ctx) {
@@ -118,8 +126,30 @@ function main() {
     return;
   }
   
-  const sheepHandler = new SheepHandler($("#sheepImg"), canvas, ctx);
-  sheepHandler.updateColors();
+  const sheep = new SheepHandler($("#sheepImg"), canvas, ctx);
+ 
+  // Dropdown menus
+  
+  // Wool
+  const woolColors: DropdownOption[] = await $.getJSON("configs/wool.json");
+  const wool = new Dropdown($("#woolSelect"), woolColors, "Select wool color");
+  wool.onchange = ( v: string ) => {
+    sheep.setWoolColor(toRGB(parseInt(v.replace(/^#/, ""), 16)));
+    sheep.updateImg();
+  } 
+
+  // Skin
+  const skinColors: DropdownOption[] = await $.getJSON("configs/skin.json");
+  const skin = new Dropdown($("#skinSelect"), skinColors, "Select skin color");
+  skin.onchange = ( v: string ) => {
+    sheep.setSkinColor(toRGB(parseInt(v.replace(/^#/, ""), 16)));
+    sheep.updateImg();
+  } 
+
+
+  $("#changeColorButton").on("click", sheep.updateImg);
 }
 
 main();
+
+
