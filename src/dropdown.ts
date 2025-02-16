@@ -1,7 +1,7 @@
 export class DropdownOption {
   text: string;
-  backColor: string;
   color: string;
+  textColor?: string;
   value: string;
 }
 
@@ -26,8 +26,8 @@ export class Dropdown {
     }
     this.onchange(o.value);
     this.buttonElement.html(o.text);
-    this.buttonElement.css("background-color", o.backColor);
-    this.buttonElement.css("color", o.color);
+    this.buttonElement.css("background-color", o.color);
+    this.buttonElement.css("color", o.textColor ? o.textColor : "var(--light)");
   }
 
   constructor( container: JQuery<HTMLElement>, options: DropdownOption[], name: string ) {
@@ -47,7 +47,12 @@ export class Dropdown {
 
     // Create options
     options.map( ( o: DropdownOption ) => {
-      const optionE = $(`<div class="dropdown-option" style="background-color: ${o.backColor}; color: ${o.color}" value="${o.value}">${o.text}</div>`);
+      o.textColor = "var(--light)";
+      const color = parseInt(o.color.replace(/^#/, ""), 16); 
+      const c = ((color >> 16) & 0xFF) ^ 2 + ((color >> 8) & 0xFF) ^ 2 + ((color >> 0) & 0xFF) ^ 2;
+      if (c > 150)
+        o.textColor = "var(--dark)";
+      const optionE = $(`<div class="dropdown-option" style="background-color: ${o.color}; color: ${o.textColor}" value="${o.value}">${o.text}</div>`);
       optionE.on("click", () => {
         console.log(o);
         this.change(o);
