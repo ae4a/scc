@@ -4,6 +4,12 @@ class Color {
   r: number;
   g: number;
   b: number;
+
+  constructor( r: number, g: number, b: number ) {
+    this.r = r;
+    this.g = g;
+    this.b = b;
+  }
 }
 
 class SheepHandler {
@@ -15,8 +21,8 @@ class SheepHandler {
   woolMask: ImageData | null = null;
   skinMask: ImageData | null = null;
   currentPixels: ImageData | null = null;
-  woolColor: Color = { r: 0, g: 0, b: 0 };
-  skinColor: Color = { r: 0, g: 0, b: 0 };
+  woolColor: Color = { r: 255, g: 255, b: 255 };
+  skinColor: Color = { r: 255, g: 255, b: 255 };
 
   loadImgs = () => {
     this.canvas.width = (this.sheepImg.get()[0] as HTMLImageElement).width;
@@ -63,7 +69,7 @@ class SheepHandler {
     skinMaskImage.src = "images/sheep_skin_mask.jpg";
   }
    
-  updateSheep = () => {
+  updateImg = () => {
     if(!this.originalPixels || !this.currentPixels || !this.woolMask || !this.skinMask) {
       alert("ERROR: images did not load correctly :( Try refresh the page.")
       return;
@@ -85,17 +91,12 @@ class SheepHandler {
     (this.sheepImg.get()[0] as HTMLImageElement).src = this.canvas.toDataURL("image/png");
   }
 
-  parseRGB( hex: number ): Color {
-    return {
-      r:  (hex >> 16) & 0xFF,
-      g:  (hex >> 8) & 0xFF,
-      b:  hex & 0xFF,
-    }
+  setWoolColor( c: Color ) {
+    this.woolColor = c;
   }
 
-  updateColors = () => {
-    this.woolColor = this.parseRGB(parseInt(String($("#woolColorPicker").val()).replace(/^#/, ""), 16));
-    this.skinColor = this.parseRGB(parseInt(String($("#skinColorPicker").val()).replace(/^#/, ""), 16));
+  setSkinColor( c: Color ) {
+    this.skinColor = c;
   }
 
   constructor( newSheepImg: JQuery<HTMLElement>, newCanvas: HTMLCanvasElement, newCtx: CanvasRenderingContext2D ) {
@@ -109,6 +110,14 @@ class SheepHandler {
  }
 }
 
+function toRGB( hex: number ): Color {
+  return {
+    r:  (hex >> 16) & 0xFF,
+    g:  (hex >> 8) & 0xFF,
+    b:  hex & 0xFF,
+  }
+}
+
 function main() {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
@@ -116,59 +125,11 @@ function main() {
     alert("Error creating context");
     return;
   }
+  
+  const sheep = new SheepHandler($("#sheepImg"), canvas, ctx);
  
   // Dropdown menu test
   const options: DropdownOption[] = [
-    {
-      text: "Розовый",
-      color: "#f283b9",
-      value: "#f283b9",
-    },
-    {
-      text: "Розовый",
-      color: "#111111",
-      value: "#430404",
-    },
-    {
-      text: "Розовый",
-      color: "#7c0a0a",
-      value: "#7c0a0a",
-    },
-    {
-      text: "Розовый",
-      color: "#cf3434",
-      value: "#cf3434",
-    },
-    {
-      text: "Розовый",
-      color: "#efb9b9",
-      value: "#efb9b9",
-    },
-    {
-      text: "Розовый",
-      color: "#ffffff",
-      value: "#ffffff",
-    },
-    {
-      text: "Розовый",
-      color: "#787777",
-      value: "#787777",
-    },
-    {
-      text: "Розовый",
-      color: "#785a5a",
-      value: "#785a5a",
-    },
-    {
-      text: "Розовый",
-      color: "#cdcdcd",
-      value: "#cdcdcd",
-    },
-    {
-      text: "Розовый",
-      color: "#754242",
-      value: "#754242",
-    },
     {
       text: "Розовый",
       color: "#f283b9",
@@ -181,17 +142,20 @@ function main() {
     }
   ];
 
-  const dd = new Dropdown($("#woolSelect"), options, "Select the color");
-  dd.onchange = ( v: string ) => {
-    console.log(v) ;
+  const wool = new Dropdown($("#woolSelect"), options, "Select wool color");
+  wool.onchange = ( v: string ) => {
+    sheep.setWoolColor(toRGB(parseInt(v.replace(/^#/, ""), 16)));
+    sheep.updateImg();
   } 
 
-  const sheep = new SheepHandler($("#sheepImg"), canvas, ctx);
-  sheep.updateColors();
+  const skin = new Dropdown($("#skinSelect"), options, "Select skin color");
+  skin.onchange = ( v: string ) => {
+    sheep.setSkinColor(toRGB(parseInt(v.replace(/^#/, ""), 16)));
+    sheep.updateImg();
+  } 
 
-  $("#changeColorButton").on("click", sheep.updateSheep);
-  $("#woolColorPicker").on("change", sheep.updateColors);
-  $("#skinColorPicker").on("change", sheep.updateColors);
+
+  $("#changeColorButton").on("click", sheep.updateImg);
 }
 
 main();

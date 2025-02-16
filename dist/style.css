@@ -2,6 +2,7 @@
   font-family: 'Roboto', sans-serif;
   --dark: #3c3c3c;
   --light: #f0f0f0;
+  --dropdown-width: 13em;
 }
 
 .hidden {
@@ -13,7 +14,7 @@
   font-size: 16px;
   font-weight: bold;
 
-  width: 13em;
+  width: var(--dropdown-width);
   height: 36px;
   padding-block: 0.4em;
   border: 4px solid var(--light);
@@ -27,7 +28,9 @@
   margin-block: 6px;
   border-radius: 10px;
   padding-block: 0.1px;
+  position: absolute;
 
+  width: var(--dropdown-width);
   max-height: 180px;
   overflow-y: scroll;
   -ms-overflow-style: none;
