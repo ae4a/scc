@@ -1,0 +1,33 @@
+#mainContainer {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#sheepImg {
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-aspect-ratio: 5616/3744) {
+  #sheepImg {
+    width: auto;
+    height: 100%;
+  }
+}
+
+
+#controlsContainer {
+  position: absolute;
+  z-index: 10;
+  bottom: 4%;
+  right: 4%;
+}
+ 

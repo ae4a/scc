@@ -1,3 +1,5 @@
+@import url(layout.css);
+
 :root {
   font-family: 'Roboto', sans-serif;
   --dark: #3c3c3c;
@@ -7,6 +9,11 @@
 
 .hidden {
   display: none;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .dropdown-button {
@@ -25,7 +32,7 @@
 }
 
 .dropdown-content {
-  margin-block: 6px;
+  margin-block: 40px;
   border-radius: 10px;
   padding-block: 0.1px;
   position: absolute;
