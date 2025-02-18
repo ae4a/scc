@@ -1,3 +1,11 @@
+export function debug( s: string ) {
+  $("#console").append($(`<p>${s}</p>`));
+}
+
+console.log = function (m) {
+  debug(m);
+}
+
 export class DropdownOption {
   text: string;
   color: string;
