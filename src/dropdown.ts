@@ -59,13 +59,10 @@ export class Dropdown {
       const br = (max + min) / 2;
       const lum = max - min;
 
-      console.log(br);
-      
-      if (br > 130 && lum < 120)
+      if (br > 130 && lum < 220)
         o.textColor = "var(--dark)";
       const optionE = $(`<div class="dropdown-option" style="background-color: ${o.color}; color: ${o.textColor}" value="${o.value}">${o.text}</div>`);
       optionE.on("click", () => {
-        console.log(o);
         this.change(o);
         this.contentContainer.addClass("hidden");
         if (this.activeOptionElement) {
@@ -80,8 +77,6 @@ export class Dropdown {
     });
 
     document.addEventListener("click", ( e ) => {
-      console.log(e.target);
-      console.log(!e.target, !this.optionsElements.includes(e.target as HTMLElement), (e.target as HTMLElement) != this.buttonElement.get()[0]);
       if (!e.target)
         return;
       if (!this.optionsElements.includes(e.target as HTMLElement) && (e.target as HTMLElement) != this.buttonElement.get()[0])

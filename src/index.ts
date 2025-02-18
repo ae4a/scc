@@ -78,6 +78,15 @@ class SheepHandler {
       console.log("skin end");
     }
     skinMaskImage.src = `images/${sheepName}/skin_mask.jpg`;
+
+
+    // Extra check
+    setTimeout(() => {
+      if(!this.originalPixels || !this.currentPixels || !this.woolMask || !this.skinMask) {
+        console.log("EXTRA");
+        this.loadImgs();         
+      }
+    }, 1000);
   }
    
   updateImg = () => {
@@ -143,7 +152,7 @@ async function main() {
   
   // Wool
   const woolColors: DropdownOption[] = await $.getJSON("configs/wool.json");
-  const wool = new Dropdown($("#woolSelect"), woolColors, "Select wool color");
+  const wool = new Dropdown($("#woolSelect"), woolColors, "Выберите цвет");
   wool.onchange = ( v: string ) => {
     sheep.setWoolColor(toRGB(parseInt(v.replace(/^#/, ""), 16)));
     sheep.updateImg();
@@ -151,12 +160,11 @@ async function main() {
 
   // Skin
   const skinColors: DropdownOption[] = await $.getJSON("configs/skin.json");
-  const skin = new Dropdown($("#skinSelect"), skinColors, "Select skin color");
+  const skin = new Dropdown($("#skinSelect"), skinColors, "Выберите цвет");
   skin.onchange = ( v: string ) => {
     sheep.setSkinColor(toRGB(parseInt(v.replace(/^#/, ""), 16)));
     sheep.updateImg();
   } 
-
 
   $("#changeColorButton").on("click", sheep.updateImg);
 }
