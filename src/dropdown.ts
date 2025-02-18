@@ -49,8 +49,19 @@ export class Dropdown {
     options.map( ( o: DropdownOption ) => {
       o.textColor = "var(--light)";
       const color = parseInt(o.color.replace(/^#/, ""), 16); 
-      const c = ((color >> 16) & 0xFF) ^ 2 + ((color >> 8) & 0xFF) ^ 2 + ((color >> 0) & 0xFF) ^ 2;
-      if (c > 150)
+      
+      // Getting brightness
+      const r = (color >> 16) & 0xFF;
+      const g = (color >> 8) & 0xFF;
+      const b = (color >> 0) & 0xFF;
+      const max = Math.max(r, g, b);
+      const min = Math.min(r, g, b);
+      const br = (max + min) / 2;
+      const lum = max - min;
+
+      console.log(br);
+      
+      if (br > 130 && lum < 120)
         o.textColor = "var(--dark)";
       const optionE = $(`<div class="dropdown-option" style="background-color: ${o.color}; color: ${o.textColor}" value="${o.value}">${o.text}</div>`);
       optionE.on("click", () => {
