@@ -64,11 +64,11 @@
 #console {
   z-index: 30;
   position: absolute;
-  color: white;
+  color: red;
   height: 200px;
   width: 300px;
   border: 1px solid red;
-  bottom: 20px;
+  bottom: 200px;
   left: 20px;
   overflow: scroll;
 }
