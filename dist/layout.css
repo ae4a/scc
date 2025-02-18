@@ -16,10 +16,22 @@
   height: auto;
 }
 
-@media screen and (max-aspect-ratio: 1.3) {
+@media screen and (max-aspect-ratio: 1.16) {
   #sheepImg {
     width: auto;
-    height: 130%;
+    height: 120%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  #sheepImg {
+    height: 105%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #sheepImg {
+    height: 100%;
   }
 }
 
@@ -43,7 +55,7 @@
   margin-inline: 10px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
   #controlsContainerFather {
     left: 0;
     right: 0;
@@ -59,7 +71,7 @@
   }
 
   .label {
-    margin-bottom: 12px;
+    margin-block: 12px;
   }
 
   #mainContainer {
