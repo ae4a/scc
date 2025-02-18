@@ -21,6 +21,7 @@
   top: 0;
   display: flex;
   justify-content: center;
+  align-items: flex-end;
 }
 
 #title {
@@ -31,6 +32,7 @@
   margin: 0;
   font-weight: normal;
   text-decoration: none;
+  margin-left: 24px;
 }
 
 #title:hover {
@@ -46,6 +48,25 @@
 @media screen and (max-width: 650px) {
   #title {
     font-size: 100px;
+  }
+}
+
+.external-link {
+  margin-bottom: 39px;
+  margin-left: 8px;
+  color: var(--light);
+  opacity: 30%;
+}
+
+@media screen and (max-width: 1000px) {
+  .external-link {
+    margin-bottom: 34px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .external-link {
+    margin-bottom: 27px;
   }
 }
 
