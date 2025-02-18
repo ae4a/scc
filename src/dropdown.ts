@@ -2,8 +2,14 @@ export function debug( s: string ) {
   $("#console").append($(`<p>${s}</p>`));
 }
 
-console.log = function (m) {
-  debug(m);
+const qp = new URLSearchParams(window.location.search);
+const dc = qp.get("console");
+
+if (dc) {
+  console.log = function (m) {
+    debug(m);
+  }
+  $("#console").css("display", "block");
 }
 
 export class DropdownOption {

@@ -1,4 +1,4 @@
-import { debug, Dropdown, DropdownOption } from "./dropdown";
+import { Dropdown, DropdownOption } from "./dropdown";
 
 // Image variant name( for path deduction )
 const sheepName = "var1";
@@ -42,37 +42,37 @@ class SheepHandler {
     // Load sheep image
     const sheepImage = new Image();
     sheepImage.onload = () => {
-      debug("sheep start")
+      console.log("sheep start")
       const img = sheepImage;
     
       this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, this.canvas.width, this.canvas.height);
       this.currentPixels = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
       this.originalPixels = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
-      debug("sheep end")
+      console.log("sheep end")
     }
     sheepImage.src = `images/${sheepName}/sheep.jpg`;
 
     // Load wool mask
     const woolMaskImage = new Image();
     woolMaskImage.onload = () => {
-      debug("wool start");
+      console.log("wool start");
       const img = woolMaskImage;
 
       this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, this.canvas.width, this.canvas.height);
       this.woolMask = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
-      debug("wool end");
+      console.log("wool end");
     }
     woolMaskImage.src = `images/${sheepName}/wool_mask.jpg`;
 
     // Load skin mask
     const skinMaskImage = new Image();
     skinMaskImage.onload = () => {
-      debug("skin start")
+      console.log("skin start")
       const img = skinMaskImage;
 
       this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, this.canvas.width, this.canvas.height);
       this.skinMask = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
-      debug("skin end");
+      console.log("skin end");
     }
     skinMaskImage.src = `images/${sheepName}/skin_mask.jpg`;
 
@@ -80,8 +80,8 @@ class SheepHandler {
     // Extra check
     setTimeout(() => {
       if(!this.originalPixels || !this.currentPixels || !this.woolMask || !this.skinMask) {
-        debug("!!!something did not loaded");
-        debug("EXTRA");
+        console.log("!!!something did not loaded");
+        console.log("EXTRA");
         this.loadImgs();         
       }
     }, 1000);
@@ -92,9 +92,9 @@ class SheepHandler {
       alert("ERROR: images did not load correctly :( Try refresh the page.")
       return;
     }
-    // debug(this.originalPixels, this.woolMask, this.skinMask)
+    // console.log(this.originalPixels, this.woolMask, this.skinMask)
     //
-    debug("update image")
+    console.log("update image")
   
     for(var I = 0, L = this.originalPixels.data.length; I < L; I += 4) {
       const wm = this.woolMask.data[I] / 255;
@@ -105,7 +105,7 @@ class SheepHandler {
       this.currentPixels.data[I + 2] = this.originalPixels.data[I + 2] * (this.woolColor.b * wm + (this.skinColor.b * sm + 255 * (1 - sm)) * (1 - wm)) / 255;
     }
 
-    debug("data len: " + this.originalPixels.data.length);
+    console.log("data len: " + this.originalPixels.data.length);
   
     this.ctx.putImageData(this.currentPixels, 0, 0);
     (this.sheepImg.get()[0] as HTMLImageElement).src = this.canvas.toDataURL("image/png");

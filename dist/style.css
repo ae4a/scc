@@ -62,9 +62,10 @@
 /* debug console */
 
 #console {
-  z-index: 30;
+  display: none;
+  z-index: 5;
   position: absolute;
-  color: red;
+  color: green;
   height: 200px;
   width: 300px;
   border: 1px solid red;
