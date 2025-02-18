@@ -16,7 +16,7 @@
   height: auto;
 }
 
-@media screen and (max-aspect-ratio: 5616/3744) {
+@media screen and (max-aspect-ratio: 1) {
   #sheepImg {
     width: auto;
     height: 100%;

@@ -1,5 +1,9 @@
 import { Dropdown, DropdownOption } from "./dropdown";
 
+// Image variant name( for path deduction )
+const sheepName = "var1";
+
+
 // @ts-ignore
 window.mobileCheck = function() {
   let check = false;
@@ -47,7 +51,7 @@ class SheepHandler {
       console.log(this.originalPixels)
       console.log("sheep end")
     }
-    sheepImage.src = "images/sheep.jpg";
+    sheepImage.src = `images/${sheepName}/sheep.jpg`;
 
     // Load wool mask
     const woolMaskImage = new Image();
@@ -60,7 +64,7 @@ class SheepHandler {
       console.log(this.woolMask)
       console.log("wool end");
     }
-    woolMaskImage.src = "images/sheep_wool_mask.jpg";
+    woolMaskImage.src = `images/${sheepName}/wool_mask.jpg`;
 
     // Load skin mask
     const skinMaskImage = new Image();
@@ -73,7 +77,7 @@ class SheepHandler {
       console.log(this.skinMask)
       console.log("skin end");
     }
-    skinMaskImage.src = "images/sheep_skin_mask.jpg";
+    skinMaskImage.src = `images/${sheepName}/skin_mask.jpg`;
   }
    
   updateImg = () => {
