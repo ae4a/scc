@@ -94,7 +94,7 @@ class SheepHandler {
     }
     // console.log(this.originalPixels, this.woolMask, this.skinMask)
     //
-    console.log("update image")
+    console.log("--- update image ---");
   
     for(var I = 0, L = this.originalPixels.data.length; I < L; I += 4) {
       const wm = this.woolMask.data[I] / 255;
@@ -105,10 +105,13 @@ class SheepHandler {
       this.currentPixels.data[I + 2] = this.originalPixels.data[I + 2] * (this.woolColor.b * wm + (this.skinColor.b * sm + 255 * (1 - sm)) * (1 - wm)) / 255;
     }
 
-    console.log("data len: " + this.originalPixels.data.length);
   
     this.ctx.putImageData(this.currentPixels, 0, 0);
     (this.sheepImg.get()[0] as HTMLImageElement).src = this.canvas.toDataURL("image/png");
+
+    console.log(this.sheepImg.width());
+    console.log(this.sheepImg.height());
+    console.log(this.sheepImg.position());
   }
 
   setWoolColor( c: Color ) {

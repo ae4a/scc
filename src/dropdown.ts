@@ -6,8 +6,8 @@ const qp = new URLSearchParams(window.location.search);
 const dc = qp.get("console");
 
 if (dc) {
-  console.log = function (m) {
-    debug(m);
+  console.log = function (m: any) {
+    debug(JSON.stringify(m));
   }
   $("#console").css("display", "block");
 }
