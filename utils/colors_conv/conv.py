@@ -1,5 +1,5 @@
 
-f = open("wool.txt", "r", encoding="utf-8")
+f = open("skin.txt", "r", encoding="utf-8")
 
 lines = f.read().split("\n")
 
