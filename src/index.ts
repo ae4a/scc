@@ -14,12 +14,12 @@ window.mobileCheck = function() {
 };
 
 async function main() {
-  const sheep = new SheepHandler($("#sheepImg"), "var1");
- 
+  const sheep = new SheepHandler($("#sheepImg"), "hoarse");
+  
   // Dropdown menus
   
   // Wool
-  const woolColors: DropdownOption[] = await $.getJSON("configs/wool.json");
+  const woolColors: DropdownOption[] = await $.getJSON("configs/viscose.json");
   const wool = new Dropdown($("#woolSelect"), woolColors, "Выберите цвет");
   wool.onchange = ( v: string ) => {
     sheep.setWoolColor(toRGB(parseInt(v.replace(/^#/, ""), 16)));
