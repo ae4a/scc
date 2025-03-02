@@ -73,7 +73,21 @@ export class SheepHandler {
     // console.log(this.originalPixels, this.woolMask, this.skinMask)
     //
     console.log("--- update image ---");
-  
+    
+    // Skin color: #D8A88D - 216 168 141
+    // Viscose color: #A0614E - 160 97 78
+    // So I can adjust the colors
+    // const skinColor: Color = {
+    //   r: this.skinColor.r * 255 / 216,
+    //   g: this.skinColor.g * 255 / 168,
+    //   b: this.skinColor.b * 255 / 141,
+    // };
+    // const woolColor: Color = {
+    //   r: this.woolColor.r * 255 / 160,
+    //   g: this.woolColor.g * 255 / 97,
+    //   b: this.woolColor.b * 255 / 78,
+    // };
+    
     for(var I = 0, L = this.originalPixels.data.length; I < L; I += 4) {
       const wm = this.woolMask.data[I] / 255;
       const sm = this.skinMask.data[I] / 255;

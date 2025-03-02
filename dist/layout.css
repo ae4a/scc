@@ -3,7 +3,7 @@
   right: 0;
   left: -30px;
   top: 0;
-  bottom: 0;
+  bottom: -100px;
   overflow: hidden;
   margin: 0;
   display: flex;
@@ -14,6 +14,12 @@
 #sheepImg {
   width: 100%;
   height: auto;
+}
+
+@media screen and (max-aspect-ratio: 1.5) {
+  #mainContainer {
+    bottom: 0;
+  }
 }
 
 @media screen and (max-aspect-ratio: 1.16) {
