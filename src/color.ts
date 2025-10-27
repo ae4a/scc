@@ -19,4 +19,3 @@ export function toRGB( hex: number ): Color {
   }
 }
 
-

@@ -1,0 +1,24 @@
+{
+  "name": "sheep",
+  "title": "Sheep Color Changer",
+  "link": "https://school.acicularis.com/ovechka",
+  "images": {
+    "base": "images/var1/sheep.jpg",
+    "wool": "images/var1/wool_mask.jpg",
+    "skin": "images/var1/skin_mask.jpg"
+  },
+  "dropdowns": [
+    {
+      "mask": "wool",
+      "label": "Основа (шерсть):",
+      "buttonText": "Выберите цвет",
+      "colorsUrl": "configs/wool.json"
+    },
+    {
+      "mask": "skin",
+      "label": "Основа (ткань):",
+      "buttonText": "Выберите цвет",
+      "colorsUrl": "configs/skin.json"
+    }
+  ]
+}

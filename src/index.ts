@@ -1,10 +1,10 @@
 import { Dropdown, DropdownOption } from "./dropdown";
 import { SheepHandler } from "./sheep";
 import { toRGB } from "./color";
+import "./config"
 
 // Image variant name( for path deduction )
 const sheepName = "var1";
-
 
 // @ts-ignore
 window.mobileCheck = function() {
