@@ -6,7 +6,8 @@ export interface Config {
   name: string;
   title: string;
   link: string;
-  images: {
+  background: string;
+  masks: {
     [key: string]: string;
   };
   dropdowns: Array<{
@@ -17,4 +18,6 @@ export interface Config {
   }>;
 }
 
-console.log(config)
+// Validating
+if (!config || config.background == "")
+  console.error("no background image in config")

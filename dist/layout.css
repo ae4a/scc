@@ -11,26 +11,26 @@
   justify-content: center;
 }
 
-#sheepImg {
+#backgroundImg {
   width: 100%;
   height: auto;
 }
 
 @media screen and (max-aspect-ratio: 1.16) {
-  #sheepImg {
+  #backgroundImg {
     width: auto;
     height: 120%;
   }
 }
 
 @media screen and (max-width: 375px) {
-  #sheepImg {
+  #backgroundImg {
     height: 105%;
   }
 }
 
 @media screen and (max-width: 320px) {
-  #sheepImg {
+  #backgroundImg {
     height: 100%;
   }
 }

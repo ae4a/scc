@@ -1,10 +1,8 @@
 import { Dropdown, DropdownOption } from "./dropdown";
-import { SheepHandler } from "./sheep";
+import { Colorizer } from "./colorizer";
 import { toRGB } from "./color";
 import "./config"
-
-// Image variant name( for path deduction )
-const sheepName = "var1";
+import { config } from "./config";
 
 // @ts-ignore
 window.mobileCheck = function() {
@@ -14,27 +12,23 @@ window.mobileCheck = function() {
 };
 
 async function main() {
-  const sheep = new SheepHandler($("#sheepImg"), "var1");
- 
-  // Dropdown menus
-  
-  // Wool
-  const woolColors: DropdownOption[] = await $.getJSON("configs/wool.json");
-  const wool = new Dropdown($("#woolSelect"), woolColors, "Выберите цвет");
-  wool.onchange = ( v: string ) => {
-    sheep.setWoolColor(toRGB(parseInt(v.replace(/^#/, ""), 16)));
-    sheep.updateImg();
-  } 
-
-  // Skin
-  const skinColors: DropdownOption[] = await $.getJSON("configs/skin.json");
-  const skin = new Dropdown($("#skinSelect"), skinColors, "Выберите цвет");
-  skin.onchange = ( v: string ) => {
-    sheep.setSkinColor(toRGB(parseInt(v.replace(/^#/, ""), 16)));
-    sheep.updateImg();
-  } 
-
-  $("#changeColorButton").on("click", sheep.updateImg);
+  $("#backgroundImg").attr("src", config.background).on("load", async function(){
+    const colorizer = new Colorizer($("#backgroundImg"));
+   
+    // Dropdown menus
+    for(var i = 0; i < config.dropdowns.length; i++) {
+      const dropdown = config.dropdowns[i];
+      const colors: DropdownOption[] = await $.getJSON(dropdown.colorsUrl);
+      $("#controlsContainer").append($(`<div class="lineC"><h2 class="label">${dropdown.label}</h2><div id="colorSelect${i}" class="dropdown"></div></div>`))
+      const menu = new Dropdown($(`#colorSelect${i}`), colors, dropdown.buttonText);
+      menu.onchange = ( v: string ) => {
+        colorizer.setColor(dropdown.mask, toRGB(parseInt(v.replace(/^#/, ""), 16)));
+        colorizer.updateImg();
+      } 
+    }
+    
+    $("#changeColorButton").on("click", colorizer.updateImg);
+  })
 }
 
 main();

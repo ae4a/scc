@@ -2,8 +2,8 @@
   "name": "sheep",
   "title": "Sheep Color Changer",
   "link": "https://school.acicularis.com/ovechka",
-  "images": {
-    "base": "images/var1/sheep.jpg",
+  "background": "images/var1/sheep.jpg",
+  "masks": {
     "wool": "images/var1/wool_mask.jpg",
     "skin": "images/var1/skin_mask.jpg"
   },
