@@ -26,6 +26,10 @@ export interface Config {
     colorsUrl: string;
   }>;
   grayCompensation: number;
+  computeFrame: { // In
+    start: { x: number, y: number },
+    end: { x: number, y: number },
+  }
 }
 
 // Validating

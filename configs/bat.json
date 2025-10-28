@@ -18,14 +18,24 @@
       "mask": "body",
       "label": "Голова и тело:",
       "buttonText": "Выберите цвет",
-      "colorsUrl": "colors/wool.json"
+      "colorsUrl": "colors/skin.json"
     },
     {
       "mask": "wings",
       "label": "Уши и крылья:",
       "buttonText": "Выберите цвет",
-      "colorsUrl": "colors/wool.json"
+      "colorsUrl": "colors/skin.json"
     }
   ],
-  "grayCompensation": 1.1
+  "grayCompensation": 1.1,
+  "computeFrame": {
+    "start": {
+      "x": 0.3173,
+      "y": 0.3760
+    },
+    "end": {
+      "x": 0.7042,
+      "y": 0.6885
+    }
+  }
 }
