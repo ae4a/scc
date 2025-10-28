@@ -1,4 +1,4 @@
-import { map } from "jquery";
+import { contains, map } from "jquery";
 import { Color } from "./color";
 import { config } from "./config";
 
@@ -9,7 +9,7 @@ export class Colorizer {
 
   originalPixels: ImageData | null = null;
   currentPixels: ImageData | null = null;
-  masks: { [key: string]: ImageData }; // Mask from mask name
+  masks: { [key: string]: { data: ImageData, compesation: number } }; // Mask from mask name
   colors: { [key: string]: Color }; // Color for mask
 
   loadImgs = () => {
@@ -33,16 +33,14 @@ export class Colorizer {
 
     // Load masks
     for (const maskName in config.masks) {
-      if (maskName === "base") continue; // Skip the base image
       const maskImage = new Image();
       maskImage.onload = () => {
         console.log(`${maskName} start`);
         this.ctx.drawImage(maskImage, 0, 0, maskImage.naturalWidth, maskImage.naturalHeight, 0, 0, this.canvas.width, this.canvas.height);
-        this.masks[maskName] = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
-        this.colors[maskName] = new Color(255, 255, 255);
+        this.masks[maskName] = { data: this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height), compesation: config.masks[maskName].compensation };
         console.log(`${maskName} end`);
       }
-      maskImage.src = config.masks[maskName];
+      maskImage.src = config.masks[maskName].file;
     }
 
 
@@ -75,17 +73,22 @@ export class Colorizer {
     for (const maskName in config.masks) {
       var mask = this.masks[maskName];
       var color = this.colors[maskName];
-      if (!color || !mask) {
+      if (!mask) {
         console.log("failed to get color or mask");
+        continue;
+      }
+      if (!color) {
         continue;
       }
 
       for(var i = 0; i < this.originalPixels.data.length; i += 4) {
-        const coef = mask.data[i] / 255;
+        const coef = mask.data.data[i] / 255;
 
-        this.currentPixels.data[i + 0] = this.currentPixels.data[i + 0] * ((color.r / 255.0 - 1) * coef + 1);
-        this.currentPixels.data[i + 1] = this.currentPixels.data[i + 1] * ((color.g / 255.0 - 1) * coef + 1);
-        this.currentPixels.data[i + 2] = this.currentPixels.data[i + 2] * ((color.b / 255.0 - 1) * coef + 1);
+        const compensation = 1 + mask.compesation * coef;
+
+        this.currentPixels.data[i + 0] = compensation * this.currentPixels.data[i + 0] * ((color.r / 255.0 - 1) * coef + 1);
+        this.currentPixels.data[i + 1] = compensation * this.currentPixels.data[i + 1] * ((color.g / 255.0 - 1) * coef + 1);
+        this.currentPixels.data[i + 2] = compensation * this.currentPixels.data[i + 2] * ((color.b / 255.0 - 1) * coef + 1);
       }
     }
   

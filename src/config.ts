@@ -1,5 +1,11 @@
 import configData from '../configs/bat.json';
 
+// Some preloaded colors
+import woolColors from '../dist/colors/wool.json'
+// import skinColors from '../dist/colors/skin.json'
+
+import { DropdownOption } from './dropdown';
+
 export const config: Config = configData;
 
 export interface Config {
@@ -8,7 +14,10 @@ export interface Config {
   link: string;
   background: string;
   masks: {
-    [key: string]: string;
+    [key: string]: {
+      file: string;
+      compensation: number;
+    };
   };
   dropdowns: Array<{
     mask: string;
@@ -16,8 +25,15 @@ export interface Config {
     buttonText: string;
     colorsUrl: string;
   }>;
+  grayCompensation: number;
 }
 
 // Validating
 if (!config || config.background == "")
   console.error("no background image in config")
+
+export async function GetColors(filename: string): Promise<DropdownOption[]> {
+  if (filename == "colors/wool.json") { return woolColors }
+  //if (filename == "colors/skin.json") { return woolColors }
+  return await $.getJSON(filename)
+}

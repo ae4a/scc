@@ -1,24 +1,31 @@
 {
   "name": "bat",
   "title": "Bat Color Changer",
-  "link": "https://school.acicularis.com/ovechka",
+  "link": "https://school.acicularis.com/edward",
   "background": "images/bat2/back.JPG",
   "masks": {
-    "wings": "images/bat2/wings_mask.JPG",
-    "body": "images/bat2/body_mask.JPG"
+    "wings": {
+      "file": "images/bat2/wings_mask.JPG",
+      "compensation": 0.4
+    },
+    "body": {
+      "file": "images/bat2/body_mask.JPG",
+      "compensation": 0.2
+    }
   },
   "dropdowns": [
     {
-      "mask": "wings",
-      "label": "Основа (шерсть):",
+      "mask": "body",
+      "label": "Голова и тело:",
       "buttonText": "Выберите цвет",
       "colorsUrl": "colors/wool.json"
     },
     {
-      "mask": "body",
-      "label": "Основа (ткань):",
+      "mask": "wings",
+      "label": "Уши и крылья:",
       "buttonText": "Выберите цвет",
-      "colorsUrl": "colors/skin.json"
+      "colorsUrl": "colors/wool.json"
     }
-  ]
+  ],
+  "grayCompensation": 1.1
 }
