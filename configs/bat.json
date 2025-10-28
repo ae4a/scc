@@ -1,0 +1,24 @@
+{
+  "name": "bat",
+  "title": "Bat Color Changer",
+  "link": "https://school.acicularis.com/ovechka",
+  "background": "images/bat2/back.JPG",
+  "masks": {
+    "wings": "images/bat2/wings_mask.JPG",
+    "body": "images/bat2/body_mask.JPG"
+  },
+  "dropdowns": [
+    {
+      "mask": "wings",
+      "label": "Основа (шерсть):",
+      "buttonText": "Выберите цвет",
+      "colorsUrl": "colors/wool.json"
+    },
+    {
+      "mask": "body",
+      "label": "Основа (ткань):",
+      "buttonText": "Выберите цвет",
+      "colorsUrl": "colors/skin.json"
+    }
+  ]
+}

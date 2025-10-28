@@ -1,4 +1,4 @@
-import configData from '../configs/sheep.json';
+import configData from '../configs/bat.json';
 
 export const config: Config = configData;
 

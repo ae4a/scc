@@ -13,6 +13,7 @@ window.mobileCheck = function() {
 
 async function main() {
   $("#backgroundImg").attr("src", config.background).on("load", async function(){
+    $("#backgroundImg").off("load");
     const colorizer = new Colorizer($("#backgroundImg"));
    
     // Dropdown menus
