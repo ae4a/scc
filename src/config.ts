@@ -1,4 +1,4 @@
-import configData from '../configs/bat.json';
+import configData from '../configs/bat-en.json';
 
 // Some preloaded colors
 import woolColors from '../dist/colors/wool.json'
