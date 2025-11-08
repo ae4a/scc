@@ -1,4 +1,3 @@
-
 export class Color {
   r: number;
   g: number;

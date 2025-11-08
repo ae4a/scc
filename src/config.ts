@@ -1,10 +1,10 @@
 import configData from '../configs/bat-en.json';
 
 // Some preloaded colors
-import woolColors from '../dist/colors/wool.json'
+import woolColors from '../public/colors/wool.json'
 // import skinColors from '../dist/colors/skin.json'
 
-import { DropdownOption } from './dropdown';
+import { DropdownOption } from './dropdown/dropdown';
 
 export const config: Config = configData;
 

@@ -1,4 +1,6 @@
-import { Dropdown, DropdownOption } from "./dropdown";
+import "./style.css";
+
+import { Dropdown, DropdownOption } from "./dropdown/dropdown";
 import { Colorizer } from "./colorizer";
 import { toRGB } from "./color";
 import "./config"

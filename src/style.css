@@ -1,5 +1,5 @@
-@import url(layout.css);
-@import url(dropdown.css);
+@import url(./css/layout.css);
+@import url(./dropdown/dropdown.css);
 
 :root {
   font-family: 'Roboto', sans-serif;
@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: FrenchScriptMT;
-  src: url(fonts/frenchscriptmt.ttf);
+  src: url(../public/fonts/frenchscriptmt.ttf);
 }
 
 #titleContainer {

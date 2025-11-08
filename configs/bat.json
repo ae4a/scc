@@ -2,14 +2,14 @@
   "name": "bat",
   "title": "Bat Color Changer",
   "link": "https://school.acicularis.com/edward",
-  "background": "images/bat2/back.JPG",
+  "background": "img/bat2/back.JPG",
   "masks": {
     "wings": {
-      "file": "images/bat2/wings_mask.JPG",
+      "file": "img/bat2/wings_mask.JPG",
       "compensation": 0.4
     },
     "body": {
-      "file": "images/bat2/body_mask2.JPG",
+      "file": "img/bat2/body_mask2.JPG",
       "compensation": 0.2
     }
   },

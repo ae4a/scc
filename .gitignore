@@ -7,5 +7,7 @@
 **/package-lock.json
 **/dist/scripts/
 
+dist/
+
 **/.DS_Store
 

@@ -1,4 +1,3 @@
-import { contains, map } from "jquery";
 import { Color } from "./color";
 import { config } from "./config";
 
