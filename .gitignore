@@ -1,6 +1,7 @@
 # Common
 .git/
 **/.vscode/
+**/.DS_Store
 
 # JS
 **/node_modules/
@@ -8,6 +9,5 @@
 **/dist/scripts/
 
 dist/
-
-**/.DS_Store
+*.img
 
