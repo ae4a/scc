@@ -36,7 +36,6 @@ async function main() {
     
     $("#changeColorButton").on("click", colorizer.updateImg);
   })
-  fetch("http://31.128.42.251:8099/visit", { method: 'POST' });
 }
 
 main();
