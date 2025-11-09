@@ -18,26 +18,33 @@ async function main() {
   // Set all config specific stuff
   document.title = config.title;
   $("#title").attr("href", config.link)
+
+  var colorizer: Colorizer | undefined;
+
+  // Setup coloriser
   $("#backgroundImg").attr("src", config.background).on("load", async function(){
     $("#backgroundImg").off("load");
+    colorizer = new Colorizer($("#backgroundImg"));
+  })
 
-    // Set up colorizer itself
-    const colorizer = new Colorizer($("#backgroundImg"));
-   
-    // Dropdown menus
-    for(var i = 0; i < config.dropdowns.length; i++) {
-      const dropdown = config.dropdowns[i];
-      const colors: DropdownOption[] = await GetColors(dropdown.colorsUrl);
-      $("#controlsContainer").append($(`<div class="lineC"><h2 class="label">${dropdown.label}</h2><div id="colorSelect${i}" class="dropdown"></div></div>`))
-      const menu = new Dropdown($(`#colorSelect${i}`), colors, dropdown.buttonText);
+  // Dropdown menus
+  for(var i = 0; i < config.dropdowns.length; i++) {
+    const dropdown = config.dropdowns[i];
+    const dropdownI = i; // For closure
+    GetColors(dropdown.colorsUrl).then((colors: DropdownOption[]) => {
+      $("#controlsContainer").append($(`<div class="lineC"><h2 class="label">${dropdown.label}</h2><div id="colorSelect${dropdownI}" class="dropdown"></div></div>`))
+      const menu = new Dropdown($(`#colorSelect${dropdownI}`), colors, dropdown.buttonText);
       menu.onchange = ( v: string ) => {
+        if (!colorizer) {
+          console.log("ERROR: colorizer is undefined")
+          return
+        }
+
         colorizer.setColor(dropdown.mask, toRGB(parseInt(v.replace(/^#/, ""), 16)));
         colorizer.updateImg();
       } 
-    }
-    
-    $("#changeColorButton").on("click", colorizer.updateImg);
-  })
+    });
+  }
 }
 
 main();

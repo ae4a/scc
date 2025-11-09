@@ -72,7 +72,7 @@
 
 #authorLabel {
   color: var(--light);
-  opacity: 30%;
+  opacity: 10%;
   position: absolute;
   z-index: 20;
   right: 0;
