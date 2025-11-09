@@ -3,8 +3,8 @@ import "./style.css";
 import { Dropdown, DropdownOption } from "./dropdown/dropdown";
 import { Colorizer } from "./colorizer";
 import { toRGB } from "./color";
-import "./config"
-import { config, GetColors } from "./config";
+import { config, getColors } from "./config/config";
+import { language, setupLang } from "./config/lang";
 
 // @ts-ignore
 window.mobileCheck = function() {
@@ -15,14 +15,15 @@ window.mobileCheck = function() {
 };
 
 async function main() {
+  setupLang();
   // Set all config specific stuff
-  document.title = config.title;
-  $("#title").attr("href", config.link)
+  document.title = config.titleText[language];
+  $("#title").attr("href", config.titleURL)
 
   var colorizer: Colorizer | undefined;
 
   // Setup coloriser
-  $("#backgroundImg").attr("src", config.background).on("load", async function(){
+  $("#backgroundImg").attr("src", config.backgroundImgURL).on("load", async function(){
     $("#backgroundImg").off("load");
     colorizer = new Colorizer($("#backgroundImg"));
   })
@@ -31,9 +32,9 @@ async function main() {
   for(var i = 0; i < config.dropdowns.length; i++) {
     const dropdown = config.dropdowns[i];
     const dropdownI = i; // For closure
-    GetColors(dropdown.colorsUrl).then((colors: DropdownOption[]) => {
-      $("#controlsContainer").append($(`<div class="lineC"><h2 class="label">${dropdown.label}</h2><div id="colorSelect${dropdownI}" class="dropdown"></div></div>`))
-      const menu = new Dropdown($(`#colorSelect${dropdownI}`), colors, dropdown.buttonText);
+    getColors(dropdown.colorsUrl).then((colors: DropdownOption[]) => {
+      $("#controlsContainer").append($(`<div class="lineC"><h2 class="label">${dropdown.labelText[language]}</h2><div id="colorSelect${dropdownI}" class="dropdown"></div></div>`));
+      const menu = new Dropdown($(`#colorSelect${dropdownI}`), colors, dropdown.buttonText[language]);
       menu.onchange = ( v: string ) => {
         if (!colorizer) {
           console.log("ERROR: colorizer is undefined")

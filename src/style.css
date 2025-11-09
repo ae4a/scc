@@ -80,6 +80,38 @@
   margin: 7px;
 }
 
+
+#languageSelect {
+  /* Layout */
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  margin: 7px;
+
+  /* Styling */
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  padding: 5px 7px;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  color: #ffffffa0;
+  background-color: #ffffff20;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #ffffff40;
+  }
+}
+
 /* debug console */
 
 #console {

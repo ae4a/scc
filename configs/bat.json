@@ -1,29 +1,44 @@
 {
   "name": "bat",
-  "title": "Bat Color Changer",
-  "link": "https://school.acicularis.com/edward",
-  "background": "img/bat2/back.JPG",
+  "titleText": {
+    "en": "Bat color customiser | Acicularis",
+    "ru": "Кастомайзер летучей мыши | Acicularis" 
+  },
+  "titleURL": "https://school.acicularis.com/edward",
+  "backgroundImgURL": "img/bat2/back.JPG",
   "masks": {
     "wings": {
-      "file": "img/bat2/wings_mask.JPG",
+      "imgURL": "img/bat2/wings_mask.JPG",
       "compensation": 0.4
     },
     "body": {
-      "file": "img/bat2/body_mask2.JPG",
+      "imgURL": "img/bat2/body_mask2.JPG",
       "compensation": 0.2
     }
   },
   "dropdowns": [
     {
       "mask": "body",
-      "label": "Голова и тело:",
-      "buttonText": "Выберите цвет",
+      "labelText": {
+        "en": "Head and body:",
+        "ru": "Голова и тело:"
+      },
+      "buttonText": {
+        "en": "Choose color",
+        "ru": "Выберите цвет"
+      },
       "colorsUrl": "colors/skin.json"
     },
     {
       "mask": "wings",
-      "label": "Уши и крылья:",
-      "buttonText": "Выберите цвет",
+      "labelText": {
+        "en": "Ears and wings:",
+        "ru": "Уши и крылья:"
+      },
+      "buttonText": {
+        "en": "Choose color",
+        "ru": "Выберите цвет"
+      },
       "colorsUrl": "colors/skin.json"
     }
   ],

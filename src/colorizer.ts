@@ -1,5 +1,5 @@
 import { Color } from "./color";
-import { config } from "./config";
+import { config } from "./config/config";
 
 export class Colorizer {
   backgroundImg: JQuery<HTMLElement>;
@@ -37,7 +37,7 @@ export class Colorizer {
 
       console.log("sheep end")
     }
-    backgroundImg.src = config.background;
+    backgroundImg.src = config.backgroundImgURL
 
     // Load masks
     for (const maskName in config.masks) {
@@ -48,7 +48,7 @@ export class Colorizer {
         this.masks[maskName] = { data: this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height), compesation: config.masks[maskName].compensation };
         console.log(`${maskName} end`);
       }
-      maskImage.src = config.masks[maskName].file;
+      maskImage.src = config.masks[maskName].imgURL;
     }
 
 
