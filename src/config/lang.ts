@@ -2,7 +2,7 @@ import { SupportedLang } from "./scheme";
 
 export var language: SupportedLang = "en";
 
-export function setupLang() {
+export async function setupLang(): Promise<void> {
   const lang = localStorage.getItem('preferredLang') || navigator.language || navigator.languages[0];
   switch (lang) {
   case "en":

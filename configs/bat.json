@@ -5,14 +5,14 @@
     "ru": "Кастомайзер летучей мыши | Acicularis" 
   },
   "titleURL": "https://school.acicularis.com/edward",
-  "backgroundImgURL": "img/bat2/back.JPG",
+  "backgroundImgURL": "/img/bat2/back.JPG",
   "masks": {
     "wings": {
-      "imgURL": "img/bat2/wings_mask.JPG",
+      "imgURL": "/img/bat2/wings_mask.JPG",
       "compensation": 0.4
     },
     "body": {
-      "imgURL": "img/bat2/body_mask2.JPG",
+      "imgURL": "/img/bat2/body_mask2.JPG",
       "compensation": 0.2
     }
   },
@@ -27,7 +27,7 @@
         "en": "Choose color",
         "ru": "Выберите цвет"
       },
-      "colorsUrl": "colors/skin.json"
+      "colorsUrl": "/colors/skin.json"
     },
     {
       "mask": "wings",
@@ -39,7 +39,7 @@
         "en": "Choose color",
         "ru": "Выберите цвет"
       },
-      "colorsUrl": "colors/skin.json"
+      "colorsUrl": "/colors/skin.json"
     }
   ],
   "grayCompensation": 1.1,

@@ -1,4 +1,4 @@
-import configData from '../../configs/bat.json';
+import batConfig from '../../configs/bat.json';
 
 // Some preloaded colors
 import woolColors from '../../public/colors/wool.json'
@@ -7,14 +7,17 @@ import woolColors from '../../public/colors/wool.json'
 import { DropdownOption } from '../dropdown/dropdown';
 import { Config } from './scheme';
 
-export const config: Config = configData;
+export const config: Config = batConfig; // TODO change to some other default config
 
 export async function getColors(filename: string): Promise<DropdownOption[]> {
-  if (filename == "colors/wool.json") { return woolColors }
+  if (filename == "/colors/wool.json") { return woolColors; }
   //if (filename == "colors/skin.json") { return woolColors }
-  return await $.getJSON(filename) // BUG wrong promise
+  return $.getJSON(filename) // BUG wrong promise
 }
 
-// Validating
-if (!config || config.backgroundImgURL == "")
-  console.error("ERROR: no background image in config")
+export async function setupConfig(): Promise<void> {
+  // Validating
+  if (!config || config.backgroundImgURL == "")
+    console.error("ERROR: no background image in config")
+}
+

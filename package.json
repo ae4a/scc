@@ -13,6 +13,7 @@
     "imagesloaded": "^5.0.0",
     "jquery": "^3.7.1",
     "jsdom": "^25.0.1",
+    "path": "^0.12.7",
     "vite": "^7.2.2"
   },
   "devDependencies": {

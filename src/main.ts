@@ -3,7 +3,7 @@ import "./style.css";
 import { Dropdown, DropdownOption } from "./dropdown/dropdown";
 import { Colorizer } from "./colorizer";
 import { toRGB } from "./color";
-import { config, getColors } from "./config/config";
+import { config, getColors, setupConfig } from "./config/config";
 import { language, setupLang } from "./config/lang";
 
 // @ts-ignore
@@ -15,7 +15,9 @@ window.mobileCheck = function() {
 };
 
 async function main() {
-  setupLang();
+  await setupLang();
+  await setupConfig();
+
   // Set all config specific stuff
   document.title = config.titleText[language];
   $("#title").attr("href", config.titleURL)

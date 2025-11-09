@@ -8,6 +8,12 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
+    rollupOptions: {
+      input: {
+        gallary: './gallary.html',
+        editor: './editor.html'
+      }
+    }
   },
 
   server: {
