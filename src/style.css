@@ -130,3 +130,54 @@
 p {
   margin-block: 0;
 }
+
+/* GALLARY */
+
+
+#gallaryMainContainer {
+  margin-top: 200px;
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.gallaryItem {
+  display: block;
+  width: 300px;
+  height: 300px;
+}
+
+.gallaryItemImg {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+}
+
+.gallaryItemOverlay {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 300px;
+  font-size: 2em;
+  color: transparent;
+  background: transparent;
+
+  transition: all 0.2s;
+
+  &:hover {
+    color: var(--light);
+    background: #0000008c;
+  }
+}
+
