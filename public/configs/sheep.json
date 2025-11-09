@@ -1,0 +1,56 @@
+{
+  "name": "sheep",
+  "titleText": {
+    "en": "Sheep color customizer | Acicularis",
+    "ru": "Кастомайзер овцы | Acicularis"
+  },
+  "titleURL": "https://school.acicularis.com/ovechka",
+  "backgroundImgURL": "/img/sheep/back.jpg",
+  "masks": {
+    "wool": {
+      "imgURL": "/img/sheep/wool_mask.jpg",
+      "compensation": 0.0
+    },
+    "skin": {
+      "imgURL": "/img/sheep/skin_mask.jpg",
+      "compensation": 0.0
+    }
+  },
+  "dropdowns": [
+    {
+      "mask": "wool",
+      "labelText": {
+        "en": "Wool:",
+        "ru": "Основа (шерсть):"
+      },
+      "buttonText": {
+        "en": "Choose color",
+        "ru": "Выберите цвет"
+      },
+      "colorsUrl": "/colors/wool.json"
+    },
+    {
+      "mask": "skin",
+      "labelText": {
+        "en": "Skin:",
+        "ru": "Основа (ткань):"
+      },
+      "buttonText": {
+        "en": "Choose color",
+        "ru": "Выберите цвет"
+      },
+      "colorsUrl": "/colors/skin.json"
+    }
+  ],
+  "grayCompensation": 1.0,
+  "computeFrame": {
+    "start": {
+      "x": 0.3173,
+      "y": 0.3760
+    },
+    "end": {
+      "x": 0.7042,
+      "y": 0.6885
+    }
+  }
+}

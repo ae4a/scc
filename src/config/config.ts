@@ -1,4 +1,4 @@
-import batConfig from '../../configs/bat.json';
+import batConfig from '../../public/configs/bat.json';
 
 // Some preloaded colors
 import woolColors from '../../public/colors/wool.json'
@@ -7,15 +7,35 @@ import woolColors from '../../public/colors/wool.json'
 import { DropdownOption } from '../dropdown/dropdown';
 import { Config } from './scheme';
 
-export const config: Config = batConfig; // TODO change to some other default config
+export var config: Config = batConfig; // TODO change to some other default config
 
 export async function getColors(filename: string): Promise<DropdownOption[]> {
   if (filename == "/colors/wool.json") { return woolColors; }
-  //if (filename == "colors/skin.json") { return woolColors }
   return $.getJSON(filename) // BUG wrong promise
 }
 
+const SupportedConfigs = ["bat", "sheep"];
+
+async function getConfig(name:string): Promise<Config | undefined> {
+  if (!SupportedConfigs.includes(name)) {
+    return undefined;
+  }
+
+  if (name == "bat") { return batConfig; }
+
+  return $.getJSON(`/configs/${name}.json`);
+}
+
 export async function setupConfig(): Promise<void> {
+  // Look for config name
+  let name = window.location.pathname.split("/")[1];
+  var cfg =  await getConfig(name);
+  if (cfg == undefined) {
+    console.error("ERROR: no config found")
+    return;
+  }
+  config = cfg as Config;
+  
   // Validating
   if (!config || config.backgroundImgURL == "")
     console.error("ERROR: no background image in config")

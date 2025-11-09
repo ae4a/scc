@@ -1,9 +1,12 @@
-all: build preview
+all: up
 
 build:
 	vite build
 
-preview:
+up: build
+	docker compose up -d --build
+
+preview: build
 	vite preview
 
 publish: build
