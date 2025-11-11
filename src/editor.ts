@@ -20,7 +20,7 @@ async function main() {
 
   // Set all config specific stuff
   document.title = config.titleText[language];
-  $("#title").attr("href", config.titleURL)
+  //$("#title").attr("href", config.titleURL)
 
   var colorizer: Colorizer | undefined;
 
