@@ -16,4 +16,4 @@ for l in lines:
   first = False
   str += f'{{"text": "{words[1]}", "color": "{words[0]}", "value": "{words[0]}"}}'
 
-print(f'{{"compensation": {sys.argv[2]}, "palette": [{str}]}}')
+print(f'{{"palette": [{str}]}}')

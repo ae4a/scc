@@ -34,7 +34,7 @@ async function main() {
   for(var i = 0; i < config.dropdowns.length; i++) {
     const dropdown = config.dropdowns[i];
     const dropdownI = i; // For closure
-    getColors(dropdown.colorsUrl).then((colors: ColorConfig) => {
+    getColors(dropdown.colorsUrl[language]).then((colors: ColorConfig) => {
       $("#controlsContainer").append($(`<div class="lineC"><h2 class="label">${dropdown.labelText[language]}</h2><div id="colorSelect${dropdownI}" class="dropdown"></div></div>`));
       const menu = new Dropdown($(`#colorSelect${dropdownI}`), colors, dropdown.buttonText[language]);
       menu.onchange = ( v: string ) => {

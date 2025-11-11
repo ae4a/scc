@@ -23,6 +23,11 @@
 
   background-color: var(--light);
   color: var(--dark);
+
+  text-overflow: ellipsis;
+  padding-inline: 1em;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .dropdown-content {
@@ -63,6 +68,11 @@
 
   background-color: var(--light);
   color: var(--dark);
+
+  text-overflow: ellipsis;
+  padding-inline: 1em;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .dropdown-option.active {

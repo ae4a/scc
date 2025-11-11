@@ -10,7 +10,6 @@ import { Config } from './scheme';
 export var config: Config = batConfig; // TODO change to some other default config
 
 export interface ColorConfig {
-  compensation: number,
   palette: DropdownOption[],
 }
 

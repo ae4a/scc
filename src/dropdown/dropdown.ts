@@ -67,9 +67,9 @@ export class Dropdown {
       const color = parseInt(o.color.replace(/^#/, ""), 16); 
       
       // Getting brightness
-      const r = Math.min(((color >> 16) & 0xFF) * options.compensation, 255);
-      const g = Math.min(((color >> 8) & 0xFF) * options.compensation, 255);
-      const b = Math.min(((color >> 0) & 0xFF) * options.compensation, 255);
+      const r = ((color >> 16) & 0xFF);
+      const g = ((color >> 8) & 0xFF);
+      const b = ((color >> 0) & 0xFF);
       const max = Math.max(r, g, b);
       const min = Math.min(r, g, b);
       const br = (max + min) / 2;
@@ -78,7 +78,7 @@ export class Dropdown {
 
       if (br > 130 && lum < 220)
         o.textColor = "var(--dark)";
-      const optionE = $(`<div class="dropdown-option" style="background-color: rgb(${r}, ${g}, ${b}); color: ${o.textColor}" value="${o.value}">${o.text}</div>`);
+      const optionE = $(`<div class="dropdown-option" style="background-color: ${o.color}; color: ${o.textColor}" value="${o.value}">${o.text}</div>`);
       optionE.on("click", () => {
         this.change(o);
         this.contentContainer.addClass("hidden");

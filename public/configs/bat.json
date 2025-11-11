@@ -27,7 +27,10 @@
         "en": "Choose color",
         "ru": "Выберите цвет"
       },
-      "colorsUrl": "/colors/skin.json"
+      "colorsUrl": {
+        "en": "/colors/en-wool.json",
+        "ru": "/colors/ru-wool.json"
+      }
     },
     {
       "mask": "wings",
@@ -39,7 +42,10 @@
         "en": "Choose color",
         "ru": "Выберите цвет"
       },
-      "colorsUrl": "/colors/skin.json"
+      "colorsUrl": {
+        "en": "/colors/en-wool.json",
+        "ru": "/colors/ru-wool.json"
+      }
     }
   ],
   "grayCompensation": 1.1,

@@ -27,7 +27,11 @@
         "en": "Choose color",
         "ru": "Выберите цвет"
       },
-      "colorsUrl": "/colors/wool.json"
+      "colorsUrl": {
+        "en": "/colors/en-wool.json",
+        "ru": "/colors/ru-wool.json"
+      }
+
     },
     {
       "mask": "skin",
@@ -39,7 +43,10 @@
         "en": "Choose color",
         "ru": "Выберите цвет"
       },
-      "colorsUrl": "/colors/skin.json"
+      "colorsUrl": {
+        "en": "/colors/viscose.json",
+        "ru": "/colors/en-wool.json"
+      }
     }
   ],
   "grayCompensation": 1.0,

@@ -7,9 +7,9 @@ up: build
 	docker compose up -d --build
 
 convert-colors:
-	python3 utils/colors_conv/conv.py utils/colors_conv/en-wool.txt 1 | jq > public/colors/en-wool.json
-	python3 utils/colors_conv/conv.py utils/colors_conv/maori-batts.txt 1 | jq > public/colors/maori-batts.json
-	python3 utils/colors_conv/conv.py utils/colors_conv/mc-1.txt 1 | jq > public/colors/mc-1.json
+	python3 utils/colors_conv/conv.py utils/colors_conv/en-wool.txt > public/colors/en-wool.json
+	python3 utils/colors_conv/conv.py utils/colors_conv/ru-wool.txt > public/colors/ru-wool.json
+	python3 utils/colors_conv/conv.py utils/colors_conv/viscose.txt > public/colors/viscose.json
 
 preview: build
 	vite preview

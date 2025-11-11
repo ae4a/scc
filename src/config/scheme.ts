@@ -17,7 +17,7 @@ export interface Config {
     mask: string;
     labelText: MultiLangString;
     buttonText: MultiLangString;
-    colorsUrl: string;
+    colorsUrl: MultiLangString;
   }>;
   computeFrame: {
     start: { x: number, y: number },
