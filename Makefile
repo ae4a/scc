@@ -14,8 +14,15 @@ convert-colors:
 preview: build
 	vite preview
 
-publish: build
-	docker buildx build --platform linux/amd64 -t scc-bat:amd64 .
-	docker save -o scc-bat.img scc-bat:amd64
-	rsync ./scc-bat.img mys:imgs/
-	ssh mys "docker load -i imgs/scc-bat.img; cd mys; docker compose up -d scc-bat"
+push: build
+	docker buildx build --platform linux/amd64 -t scc-develop:amd64 .
+	docker save -o scc-develop.img scc-develop:amd64
+	rsync ./scc-develop.img mys:imgs/
+	ssh mys "docker load -i imgs/scc-develop.img; cd mys; docker compose up -d scc-develop"
+
+
+publish-release: build
+	docker buildx build --platform linux/amd64 -t scc-release:amd64 .
+	docker save -o scc-release.img scc-release:amd64
+	rsync ./scc-release.img mys:imgs/
+	ssh mys "docker load -i imgs/scc-release.img; cd mys; docker compose up -d scc-release"

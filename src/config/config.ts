@@ -18,7 +18,7 @@ export async function getColors(filename: string): Promise<ColorConfig> {
   return $.getJSON(filename) // BUG wrong promise
 }
 
-const SupportedConfigs = ["bat", "sheep", "dragon1"];
+const SupportedConfigs = ["bat", "sheep", "horntail"];
 
 async function getConfig(name:string): Promise<Config | undefined> {
   if (!SupportedConfigs.includes(name)) {

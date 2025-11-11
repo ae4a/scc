@@ -1,8 +1,8 @@
 {
-  "name": "dragon1",
+  "name": "horntail",
   "titleText": {
-    "en": "Bat color customizer | Acicularis",
-    "ru": "Кастомайзер летучей мыши | Acicularis" 
+    "en": "Bulgarian horntail | Acicularis",
+    "ru": "Болгарская хвосторога | Acicularis" 
   },
   "titleURL": "https://school.acicularis.com/edward",
   "backgroundImgURL": "/img/dragon1/back.jpg",
@@ -29,7 +29,7 @@
       },
       "colorsUrl": {
         "en": "/colors/en-wool.json",
-        "ru": "/colors/en-wool.json"
+        "ru": "/colors/ru-wool.json"
       }
     },
     {

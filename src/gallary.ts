@@ -24,9 +24,9 @@ const config: Config = {
     "en": "Sheep",
     "ru": "Овечка",
   },
-  "dragon1": {
-    "en": "Dragon 1",
-    "ru": "Дракон 1",
+  "horntail": {
+    "en": "Bulgarian horntail",
+    "ru": "Болгарская хвосторога" 
   }
 };
 
