@@ -11,10 +11,8 @@ window.mobileCheck = function() {
   return check;
 };
 
-type SupportedPages = "bat" | "sheep";
-
 type Config = {
-  [key in SupportedPages]: MultiLangString;
+  [key: string]: MultiLangString;
 };
 
 const config: Config = {
@@ -25,6 +23,10 @@ const config: Config = {
   "sheep": {
     "en": "Sheep",
     "ru": "Овечка",
+  },
+  "dragon1": {
+    "en": "Dragon 1",
+    "ru": "Дракон 1",
   }
 };
 

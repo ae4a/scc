@@ -14,7 +14,7 @@ export async function getColors(filename: string): Promise<DropdownOption[]> {
   return $.getJSON(filename) // BUG wrong promise
 }
 
-const SupportedConfigs = ["bat", "sheep"];
+const SupportedConfigs = ["bat", "sheep", "dragon1"];
 
 async function getConfig(name:string): Promise<Config | undefined> {
   if (!SupportedConfigs.includes(name)) {

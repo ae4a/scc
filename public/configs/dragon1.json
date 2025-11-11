@@ -1,0 +1,56 @@
+{
+  "name": "dragon1",
+  "titleText": {
+    "en": "Bat color customizer | Acicularis",
+    "ru": "Кастомайзер летучей мыши | Acicularis" 
+  },
+  "titleURL": "https://school.acicularis.com/edward",
+  "backgroundImgURL": "/img/dragon1/back.jpg",
+  "masks": {
+    "wings": {
+      "imgURL": "/img/dragon1/wings_mask.jpg",
+      "compensation": 0.5
+    },
+    "body": {
+      "imgURL": "/img/dragon1/body_mask.jpg",
+      "compensation": 0.2
+    }
+  },
+  "dropdowns": [
+    {
+      "mask": "body",
+      "labelText": {
+        "en": "Head and body:",
+        "ru": "Голова и тело:"
+      },
+      "buttonText": {
+        "en": "Choose color",
+        "ru": "Выберите цвет"
+      },
+      "colorsUrl": "/colors/skin.json"
+    },
+    {
+      "mask": "wings",
+      "labelText": {
+        "en": "Ears and wings:",
+        "ru": "Уши и крылья:"
+      },
+      "buttonText": {
+        "en": "Choose color",
+        "ru": "Выберите цвет"
+      },
+      "colorsUrl": "/colors/skin.json"
+    }
+  ],
+  "grayCompensation": 1.1,
+  "computeFrame": {
+    "start": {
+      "x": 0.3173,
+      "y": 0.3760
+    },
+    "end": {
+      "x": 0.7042,
+      "y": 0.6885
+    }
+  }
+}
