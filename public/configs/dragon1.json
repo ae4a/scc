@@ -27,7 +27,7 @@
         "en": "Choose color",
         "ru": "Выберите цвет"
       },
-      "colorsUrl": "/colors/skin.json"
+      "colorsUrl": "/colors/en-wool.json"
     },
     {
       "mask": "wings",

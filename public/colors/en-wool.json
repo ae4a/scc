@@ -1,0 +1,225 @@
+{
+  "compensation": 1,
+  "palette": [
+    {
+      "text": "maori batts | daffodil",
+      "color": "#e5e2ba",
+      "value": "#e5e2ba"
+    },
+    {
+      "text": "maori batts | sun",
+      "color": "#f9dd71",
+      "value": "#f9dd71"
+    },
+    {
+      "text": "maori batts | sunshine",
+      "color": "#feca52",
+      "value": "#feca52"
+    },
+    {
+      "text": "maori batts | citrus",
+      "color": "#fc9a41",
+      "value": "#fc9a41"
+    },
+    {
+      "text": "maori batts | zinnia",
+      "color": "#fe6f2d",
+      "value": "#fe6f2d"
+    },
+    {
+      "text": "maori batts | pumpkin",
+      "color": "#ba5038",
+      "value": "#ba5038"
+    },
+    {
+      "text": "maori batts | posey",
+      "color": "#e84534",
+      "value": "#e84534"
+    },
+    {
+      "text": "maori batts | peach",
+      "color": "#ee9477",
+      "value": "#ee9477"
+    },
+    {
+      "text": "maori batts | begonia",
+      "color": "#f75084",
+      "value": "#f75084"
+    },
+    {
+      "text": "maori batts | petunia",
+      "color": "#f999b1",
+      "value": "#f999b1"
+    },
+    {
+      "text": "maori batts | tulip",
+      "color": "#e68ebc",
+      "value": "#e68ebc"
+    },
+    {
+      "text": "maori batts | primrose",
+      "color": "#cf98cb",
+      "value": "#cf98cb"
+    },
+    {
+      "text": "maori batts | orchid",
+      "color": "#b15480",
+      "value": "#b15480"
+    },
+    {
+      "text": "maori batts | onion",
+      "color": "#854158",
+      "value": "#854158"
+    },
+    {
+      "text": "maori batts | larkspur",
+      "color": "#cec5e0",
+      "value": "#cec5e0"
+    },
+    {
+      "text": "maori batts | purple",
+      "color": "#803a96",
+      "value": "#803a96"
+    },
+    {
+      "text": "maori batts | iris",
+      "color": "#463385",
+      "value": "#463385"
+    },
+    {
+      "text": "maori batts | blackberry",
+      "color": "#41254d",
+      "value": "#41254d"
+    },
+    {
+      "text": "maori batts | glacier",
+      "color": "#b5c3dd",
+      "value": "#b5c3dd"
+    },
+    {
+      "text": "maori batts | tide pool",
+      "color": "#7abacb",
+      "value": "#7abacb"
+    },
+    {
+      "text": "maori batts | true blue",
+      "color": "#01469e",
+      "value": "#01469e"
+    },
+    {
+      "text": "maori batts | bay",
+      "color": "#024e8e",
+      "value": "#024e8e"
+    },
+    {
+      "text": "maori batts | evening",
+      "color": "#09417a",
+      "value": "#09417a"
+    },
+    {
+      "text": "maori batts | paradise",
+      "color": "#95cabc",
+      "value": "#95cabc"
+    },
+    {
+      "text": "maori batts | chartreuse",
+      "color": "#d9ea82",
+      "value": "#d9ea82"
+    },
+    {
+      "text": "maori batts | grass",
+      "color": "#5fb881",
+      "value": "#5fb881"
+    },
+    {
+      "text": "maori batts | sage",
+      "color": "#ccbd79",
+      "value": "#ccbd79"
+    },
+    {
+      "text": "maori batts | prairie",
+      "color": "#b1a469",
+      "value": "#b1a469"
+    },
+    {
+      "text": "maori batts | ivy",
+      "color": "#7c854f",
+      "value": "#7c854f"
+    },
+    {
+      "text": "maori batts | fir",
+      "color": "#424e46",
+      "value": "#424e46"
+    },
+    {
+      "text": "maori batts | mallard",
+      "color": "#1f3d3c",
+      "value": "#1f3d3c"
+    },
+    {
+      "text": "maori batts | white peach",
+      "color": "#e7d3c3",
+      "value": "#e7d3c3"
+    },
+    {
+      "text": "maori batts | hollyhock",
+      "color": "#bf9f8e",
+      "value": "#bf9f8e"
+    },
+    {
+      "text": "maori batts | sand castle",
+      "color": "#ebc1a1",
+      "value": "#ebc1a1"
+    },
+    {
+      "text": "maori batts | camel",
+      "color": "#c1966c",
+      "value": "#c1966c"
+    },
+    {
+      "text": "maori batts | barnwood",
+      "color": "#8d6d56",
+      "value": "#8d6d56"
+    },
+    {
+      "text": "maori batts | milk chocolate",
+      "color": "#764935",
+      "value": "#764935"
+    },
+    {
+      "text": "maori batts | beaver",
+      "color": "#65554f",
+      "value": "#65554f"
+    },
+    {
+      "text": "maori batts | burnt orange",
+      "color": "#aa5044",
+      "value": "#aa5044"
+    },
+    {
+      "text": "maori batts | sienna",
+      "color": "#81341c",
+      "value": "#81341c"
+    },
+    {
+      "text": "maori batts | winter white",
+      "color": "#bacdfb",
+      "value": "#bacdfb"
+    },
+    {
+      "text": "maori batts | natural white",
+      "color": "#ede6e0",
+      "value": "#ede6e0"
+    },
+    {
+      "text": "maori batts | smoke",
+      "color": "#737183",
+      "value": "#737183"
+    },
+    {
+      "text": "maori batts | charcoal",
+      "color": "#4d5057",
+      "value": "#4d5057"
+    }
+  ]
+}

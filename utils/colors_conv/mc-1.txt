@@ -1,0 +1,33 @@
+#ecbe70 honeysuckle
+#e0a442 mango
+#dd773c orange creme
+#cd5a1e mandarine
+#ae3131 hot orange
+#9b0014 true red
+#7e091d vintage red
+#c2545f rose petal
+#ccbbb1 linen
+#c6b4a6 barley
+#938d8e birch
+#c2a9ac sand dune
+#d5beac sand
+#ccaa8f pale peach
+#edbc9b peachy
+#c7a38b latte
+#ab7c46 caramel
+#aa7b5d suntan
+#c38d5e snickerdoodle
+#a06e4c clay
+#64553f vintage brown
+#694d46 sandalwood
+#513520 chestnut
+#7c4528 cinnamon brown
+#6d3019 pumpkin spice
+#7a1f29 mahogany
+#69605e willow
+#221f1f dark chocolate
+#e4d8c8 natural cotton white
+#919191 storm gray
+#505054 charcoal gray
+#414147 slate
+#18181b black onyx

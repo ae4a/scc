@@ -1,0 +1,45 @@
+#e5e2ba daffodil
+#f9dd71 sun
+#feca52 sunshine
+#fc9a41 citrus
+#fe6f2d zinnia
+#ba5038 pumpkin
+#e84534 posey
+#ee9477 peach
+#f75084 begonia
+#f999b1 petunia
+#e68ebc tulip
+#cf98cb primrose
+#b15480 orchid
+#854158 onion
+#cec5e0 larkspur
+#803a96 purple
+#463385 iris
+#41254d blackberry
+#b5c3dd glacier
+#7abacb tide pool
+#01469e true blue
+#024e8e bay
+#09417a evening
+#95cabc paradise
+#d9ea82 chartreuse
+#5fb881 grass
+#ccbd79 sage
+#b1a469 prairie
+#7c854f ivy
+#424e46 fir
+#1f3d3c mallard
+#e7d3c3 white peach
+#bf9f8e hollyhock
+#ebc1a1 sand castle
+#c1966c camel
+#8d6d56 barnwood
+#764935 milk chocolate
+#65554f beaver
+#aa5044 burnt orange
+#81341c sienna
+#bacdfb winter white
+#ede6e0 natural white
+#737183 smoke
+#4d5057 charcoal
+

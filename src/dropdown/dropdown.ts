@@ -1,3 +1,5 @@
+import { ColorConfig } from "../config/config";
+
 export function debug( s: string ) {
   $("#console").append($(`<p>${s}</p>`));
 }
@@ -44,7 +46,7 @@ export class Dropdown {
     this.onchange(o.value);
   }
 
-  constructor( container: JQuery<HTMLElement>, options: DropdownOption[], name: string ) {
+  constructor( container: JQuery<HTMLElement>, options: ColorConfig, name: string ) {
     this.container = container;
     // this.options = options;
 
@@ -60,22 +62,23 @@ export class Dropdown {
     this.contentContainer.appendTo(this.container);
 
     // Create options
-    options.map( ( o: DropdownOption ) => {
+    options.palette.map( ( o: DropdownOption ) => {
       o.textColor = "var(--light)";
       const color = parseInt(o.color.replace(/^#/, ""), 16); 
       
       // Getting brightness
-      const r = (color >> 16) & 0xFF;
-      const g = (color >> 8) & 0xFF;
-      const b = (color >> 0) & 0xFF;
+      const r = Math.min(((color >> 16) & 0xFF) * options.compensation, 255);
+      const g = Math.min(((color >> 8) & 0xFF) * options.compensation, 255);
+      const b = Math.min(((color >> 0) & 0xFF) * options.compensation, 255);
       const max = Math.max(r, g, b);
       const min = Math.min(r, g, b);
       const br = (max + min) / 2;
       const lum = max - min;
 
+
       if (br > 130 && lum < 220)
         o.textColor = "var(--dark)";
-      const optionE = $(`<div class="dropdown-option" style="background-color: ${o.color}; color: ${o.textColor}" value="${o.value}">${o.text}</div>`);
+      const optionE = $(`<div class="dropdown-option" style="background-color: rgb(${r}, ${g}, ${b}); color: ${o.textColor}" value="${o.value}">${o.text}</div>`);
       optionE.on("click", () => {
         this.change(o);
         this.contentContainer.addClass("hidden");

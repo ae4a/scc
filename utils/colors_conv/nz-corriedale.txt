@@ -1,0 +1,45 @@
+#b99300 yellow
+#b59c4c lemon
+#a87847 honey
+#a3671f butterscotch
+#c68028 marigold
+#c66923 tangerine
+#b03d2b nutmeg
+#c13722 pumpkin
+#ca3540 berry
+#be142c red
+#9e1f2b cherry red
+#b09280 cherub
+#986a73 cupcake
+#c46a73 rose
+#b26d85 candy
+#a94b7a orchid
+#b53580 magenta
+#8d1a43 raspberry
+#836ca0 lavender
+#966e8b sweetpea
+#764756 lilac haze
+#6f7f95 ice
+#5e7597 sky
+#0681a6 turquoise
+#04629f lagoon
+#2542a1 royal
+#315494 cobalt
+#54527b periwinkle
+#293350 indigo
+#7b816c mint
+#4f7a20 lime
+#6e681e lima
+#216748 moss
+#08616c teal
+#2a4a48 fir
+#8d837a natural light
+#83736a natural medium
+#4e4139 natural dark
+#916d51 camel
+#96521d toffee
+#65564b acorn
+#513a34 cocoa
+#a79e93 natural white
+#585a5f smoke
+#1e1e25 black

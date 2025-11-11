@@ -1,0 +1,170 @@
+{
+  "compensation": 1,
+  "palette": [
+    {
+      "text": "honeysuckle",
+      "color": "#ecbe70",
+      "value": "#ecbe70"
+    },
+    {
+      "text": "mango",
+      "color": "#e0a442",
+      "value": "#e0a442"
+    },
+    {
+      "text": "orange creme",
+      "color": "#dd773c",
+      "value": "#dd773c"
+    },
+    {
+      "text": "mandarine",
+      "color": "#cd5a1e",
+      "value": "#cd5a1e"
+    },
+    {
+      "text": "hot orange",
+      "color": "#ae3131",
+      "value": "#ae3131"
+    },
+    {
+      "text": "true red",
+      "color": "#9b0014",
+      "value": "#9b0014"
+    },
+    {
+      "text": "vintage red",
+      "color": "#7e091d",
+      "value": "#7e091d"
+    },
+    {
+      "text": "rose petal",
+      "color": "#c2545f",
+      "value": "#c2545f"
+    },
+    {
+      "text": "linen",
+      "color": "#ccbbb1",
+      "value": "#ccbbb1"
+    },
+    {
+      "text": "barley",
+      "color": "#c6b4a6",
+      "value": "#c6b4a6"
+    },
+    {
+      "text": "birch",
+      "color": "#938d8e",
+      "value": "#938d8e"
+    },
+    {
+      "text": "sand dune",
+      "color": "#c2a9ac",
+      "value": "#c2a9ac"
+    },
+    {
+      "text": "sand",
+      "color": "#d5beac",
+      "value": "#d5beac"
+    },
+    {
+      "text": "pale peach",
+      "color": "#ccaa8f",
+      "value": "#ccaa8f"
+    },
+    {
+      "text": "peachy",
+      "color": "#edbc9b",
+      "value": "#edbc9b"
+    },
+    {
+      "text": "latte",
+      "color": "#c7a38b",
+      "value": "#c7a38b"
+    },
+    {
+      "text": "caramel",
+      "color": "#ab7c46",
+      "value": "#ab7c46"
+    },
+    {
+      "text": "suntan",
+      "color": "#aa7b5d",
+      "value": "#aa7b5d"
+    },
+    {
+      "text": "snickerdoodle",
+      "color": "#c38d5e",
+      "value": "#c38d5e"
+    },
+    {
+      "text": "clay",
+      "color": "#a06e4c",
+      "value": "#a06e4c"
+    },
+    {
+      "text": "vintage brown",
+      "color": "#64553f",
+      "value": "#64553f"
+    },
+    {
+      "text": "sandalwood",
+      "color": "#694d46",
+      "value": "#694d46"
+    },
+    {
+      "text": "chestnut",
+      "color": "#513520",
+      "value": "#513520"
+    },
+    {
+      "text": "cinnamon brown",
+      "color": "#7c4528",
+      "value": "#7c4528"
+    },
+    {
+      "text": "pumpkin spice",
+      "color": "#6d3019",
+      "value": "#6d3019"
+    },
+    {
+      "text": "mahogany",
+      "color": "#7a1f29",
+      "value": "#7a1f29"
+    },
+    {
+      "text": "willow",
+      "color": "#69605e",
+      "value": "#69605e"
+    },
+    {
+      "text": "dark chocolate",
+      "color": "#221f1f",
+      "value": "#221f1f"
+    },
+    {
+      "text": "natural cotton white",
+      "color": "#e4d8c8",
+      "value": "#e4d8c8"
+    },
+    {
+      "text": "storm gray",
+      "color": "#919191",
+      "value": "#919191"
+    },
+    {
+      "text": "charcoal gray",
+      "color": "#505054",
+      "value": "#505054"
+    },
+    {
+      "text": "slate",
+      "color": "#414147",
+      "value": "#414147"
+    },
+    {
+      "text": "black onyx",
+      "color": "#18181b",
+      "value": "#18181b"
+    }
+  ]
+}

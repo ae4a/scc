@@ -1,0 +1,50 @@
+// maori-batts
+
+#e5e2ba maori batts | daffodil
+#f9dd71 maori batts | sun
+#feca52 maori batts | sunshine
+#fc9a41 maori batts | citrus
+#fe6f2d maori batts | zinnia
+#ba5038 maori batts | pumpkin
+#e84534 maori batts | posey
+#ee9477 maori batts | peach
+#f75084 maori batts | begonia
+#f999b1 maori batts | petunia
+#e68ebc maori batts | tulip
+#cf98cb maori batts | primrose
+#b15480 maori batts | orchid
+#854158 maori batts | onion
+#cec5e0 maori batts | larkspur
+#803a96 maori batts | purple
+#463385 maori batts | iris
+#41254d maori batts | blackberry
+#b5c3dd maori batts | glacier
+#7abacb maori batts | tide pool
+#01469e maori batts | true blue
+#024e8e maori batts | bay
+#09417a maori batts | evening
+#95cabc maori batts | paradise
+#d9ea82 maori batts | chartreuse
+#5fb881 maori batts | grass
+#ccbd79 maori batts | sage
+#b1a469 maori batts | prairie
+#7c854f maori batts | ivy
+#424e46 maori batts | fir
+#1f3d3c maori batts | mallard
+#e7d3c3 maori batts | white peach
+#bf9f8e maori batts | hollyhock
+#ebc1a1 maori batts | sand castle
+#c1966c maori batts | camel
+#8d6d56 maori batts | barnwood
+#764935 maori batts | milk chocolate
+#65554f maori batts | beaver
+#aa5044 maori batts | burnt orange
+#81341c maori batts | sienna
+#bacdfb maori batts | winter white
+#ede6e0 maori batts | natural white
+#737183 maori batts | smoke
+#4d5057 maori batts | charcoal
+
+// mc-1
+
+// nz-corriedale

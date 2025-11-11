@@ -3,7 +3,7 @@ import "./style.css";
 import { Dropdown, DropdownOption } from "./dropdown/dropdown";
 import { Colorizer } from "./colorizer";
 import { toRGB } from "./color";
-import { config, getColors, setupConfig } from "./config/config";
+import { ColorConfig, config, getColors, setupConfig } from "./config/config";
 import { language, setupLang } from "./config/lang";
 
 // @ts-ignore
@@ -34,7 +34,7 @@ async function main() {
   for(var i = 0; i < config.dropdowns.length; i++) {
     const dropdown = config.dropdowns[i];
     const dropdownI = i; // For closure
-    getColors(dropdown.colorsUrl).then((colors: DropdownOption[]) => {
+    getColors(dropdown.colorsUrl).then((colors: ColorConfig) => {
       $("#controlsContainer").append($(`<div class="lineC"><h2 class="label">${dropdown.labelText[language]}</h2><div id="colorSelect${dropdownI}" class="dropdown"></div></div>`));
       const menu = new Dropdown($(`#colorSelect${dropdownI}`), colors, dropdown.buttonText[language]);
       menu.onchange = ( v: string ) => {
