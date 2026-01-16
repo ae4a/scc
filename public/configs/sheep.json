@@ -20,7 +20,7 @@
     {
       "mask": "wool",
       "labelText": {
-        "en": "Wool:",
+        "en": "Fur:",
         "ru": "Основа (шерсть):"
       },
       "buttonText": {
@@ -28,10 +28,9 @@
         "ru": "Выберите цвет"
       },
       "colorsUrl": {
-        "en": "/colors/en-wool.json",
-        "ru": "/colors/ru-wool.json"
+        "en": "/colors/en-fabric.json",
+        "ru": "/colors/ru-fabric.json"
       }
-
     },
     {
       "mask": "skin",
@@ -44,8 +43,8 @@
         "ru": "Выберите цвет"
       },
       "colorsUrl": {
-        "en": "/colors/viscose.json",
-        "ru": "/colors/en-wool.json"
+        "en": "/colors/en-wool.json",
+        "ru": "/colors/ru-wool.json"
       }
     }
   ],

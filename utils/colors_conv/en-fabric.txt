@@ -1,0 +1,23 @@
+#EBEFF7 White
+#DED5C9 Milky
+#CBB29C Light beige
+#CDA399 Powdery
+#9D8B86 Beige
+#D9B3D1 Pink
+#C7BFBF Sand
+#96779E Dusty rose
+#AFA1D2 Lavender
+#5069AD Lilac
+#90AFD6 Sky blue
+#64B6AE Turquoise
+#80958C Sage
+#C2DA9A Light green
+#EDDC7C Soft yellow
+#E5CA12 Yellow
+#E8AB42 Mustard
+#C81831 Red
+#870D13 Terracotta
+#C30E5A Raspberry
+#AB0F59 Fuchsia
+#413635 Chocolate
+#4F4F53 Dark grey
