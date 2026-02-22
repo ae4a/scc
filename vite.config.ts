@@ -11,7 +11,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         gallary: './frontend/html/gallary.html',
-        editor: './frontend/html/editor.html'
+        editor: './frontend/html/editor.html',
+        404: './frontend/html/404.html'
       }
     }
   },
