@@ -1,0 +1,62 @@
+{
+  "name": "dragon2",
+  "titleText": {
+    "en": "Dragon 2 | Acicularis",
+    "ru": "Dragon 2 | Acicularis" 
+  },
+  "titleURL": "https://school.acicularis.com/edward",
+  "backgroundImgURL": "/img/dragon2/back2.png",
+  "masks": {
+    "mask1": {
+      "imgURL": "/img/dragon2/mask_10.jpg",
+      "compensation": 0.0
+    },
+    "mask2": {
+      "imgURL": "/img/dragon2/mask_20.jpg",
+      "compensation": 0.0
+    }
+  },
+  "dropdowns": [
+    {
+      "mask": "mask1",
+      "labelText": {
+        "en": "Head and body:",
+        "ru": "Голова и тело:"
+      },
+      "buttonText": {
+        "en": "Choose color",
+        "ru": "Выберите цвет"
+      },
+      "colorsUrl": {
+        "en": "/colors/en-wool.json",
+        "ru": "/colors/ru-wool.json"
+      }
+    },
+    {
+      "mask": "mask2",
+      "labelText": {
+        "en": "Ears and wings:",
+        "ru": "Уши и крылья:"
+      },
+      "buttonText": {
+        "en": "Choose color",
+        "ru": "Выберите цвет"
+      },
+      "colorsUrl": {
+        "en": "/colors/en-wool.json",
+        "ru": "/colors/ru-wool.json"
+      }
+    }
+  ],
+  "grayCompensation": 1.0,
+  "computeFrame": {
+    "start": {
+      "x": 0,
+      "y": 0
+    },
+    "end": {
+      "x": 1,
+      "y": 1
+    }
+  }
+}
