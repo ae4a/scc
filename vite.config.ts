@@ -10,8 +10,8 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       input: {
-        gallary: './gallary.html',
-        editor: './editor.html'
+        gallary: './frontend/html/gallary.html',
+        editor: './frontend/html/editor.html'
       }
     }
   },
@@ -33,7 +33,7 @@ export default defineConfig({
 
   resolve: {
     alias: [
-      { find: '@', replacement: '/src' },
+      { find: '@', replacement: '/frontend/src' },
     ],
   },
 });

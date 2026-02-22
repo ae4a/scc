@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: FrenchScriptMT;
-  src: url(../public/fonts/frenchscriptmt.ttf);
+  src: url(../../public/fonts/frenchscriptmt.ttf);
 }
 
 #titleContainer {
@@ -180,4 +180,3 @@ p {
     background: #0000008c;
   }
 }
-

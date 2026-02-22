@@ -1,4 +1,4 @@
-import batConfig from '../../public/configs/bat.json';
+import batConfig from '../../../public/configs/bat.json';
 
 // Some preloaded colors
 //import woolColors from '../../public/colors/wool.json'
