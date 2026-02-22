@@ -4,6 +4,7 @@ export type MultiLangString = { [key in SupportedLang]: string; };
 
 export interface Config {
   name: string; // For internal use
+  lang?: string;
   titleText: MultiLangString;
   titleURL: string;
   backgroundImgURL: string;
