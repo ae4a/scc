@@ -15,18 +15,20 @@ export class Colorizer {
   startY: number;
   endX: number;
   endY: number;
+  
+  onReady?: () => void;
 
   loadImgs = () => {
-    this.canvas.width = (this.backgroundImg.get()[0] as HTMLImageElement).width;
-    this.canvas.height = (this.backgroundImg.get()[0] as HTMLImageElement).height;
+    const imgElement = this.backgroundImg.get()[0] as HTMLImageElement;
     
-    // Load sheep image
     const backgroundImg = new Image();
     backgroundImg.onload = () => {
       console.log("sheep start")
-      const img = backgroundImg;
+      
+      this.canvas.width = backgroundImg.naturalWidth;
+      this.canvas.height = backgroundImg.naturalHeight;
     
-      this.ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.drawImage(backgroundImg, 0, 0);
       this.currentPixels = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
       this.originalPixels = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
 
@@ -36,10 +38,14 @@ export class Colorizer {
       this.endY = Math.floor(Math.max(config.computeFrame.end.y * this.originalPixels.height, this.startY))
 
       console.log("sheep end")
+      
+      this.checkAllLoaded();
     }
-    backgroundImg.src = config.backgroundImgURL
+    backgroundImg.src = imgElement.src;
 
-    // Load masks
+    const maskNames = Object.keys(config.masks);
+    let masksLoaded = 0;
+    
     for (const maskName in config.masks) {
       const maskImage = new Image();
       maskImage.onload = () => {
@@ -47,20 +53,30 @@ export class Colorizer {
         this.ctx.drawImage(maskImage, 0, 0, maskImage.naturalWidth, maskImage.naturalHeight, 0, 0, this.canvas.width, this.canvas.height);
         this.masks[maskName] = { data: this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height), compesation: config.masks[maskName].compensation };
         console.log(`${maskName} end`);
+        
+        masksLoaded++;
+        if (masksLoaded === maskNames.length) {
+          this.checkAllLoaded();
+        }
       }
       maskImage.src = config.masks[maskName].imgURL;
     }
 
-
-    // Extra check
     setTimeout(() => {
-      // TODO add check for masks to be loaded
       if(!this.originalPixels || !this.currentPixels) {
         console.log("!!!something did not loaded");
         console.log("EXTRA");
         this.loadImgs();         
       }
     }, 1000);
+  }
+  
+  checkAllLoaded = () => {
+    if (this.originalPixels && this.currentPixels && Object.keys(this.masks).length === Object.keys(config.masks).length) {
+      if (this.onReady) {
+        this.onReady();
+      }
+    }
   }
    
   updateImg = () => {
@@ -113,12 +129,12 @@ export class Colorizer {
     this.colors[name] = c;
   }
 
-  constructor( newBackgroundImg: JQuery<HTMLElement>) {
+  constructor( newBackgroundImg: JQuery<HTMLElement>, onReady?: () => void) {
     this.backgroundImg = newBackgroundImg;
     this.masks = {};
     this.colors = {};
+    this.onReady = onReady;
 
-    // Render init
     this.canvas = document.createElement("canvas");
     const ctx = this.canvas.getContext("2d");
     if (!ctx) {

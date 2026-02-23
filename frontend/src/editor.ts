@@ -14,6 +14,20 @@ window.mobileCheck = function () {
   return check;
 };
 
+function showProgress(show: boolean, progress?: number) {
+  const bar = $("#progressBar");
+  const fill = $("#progressBarFill");
+
+  if (show) {
+    bar.css("display", "block");
+    if (progress !== undefined) {
+      fill.css("width", `${progress}%`);
+    }
+  } else {
+    bar.css("display", "none");
+  }
+}
+
 async function main() {
   await setupConfig();
 
@@ -24,22 +38,59 @@ async function main() {
     await setupLang();
   }
 
-  // Set all config specific stuff
   document.title = config.titleText[language];
-  //$("#title").attr("href", config.titleURL)
 
   var colorizer: Colorizer | undefined;
+  let fullImageLoaded = false;
 
-  // Setup coloriser
-  $("#backgroundImg").attr("src", config.backgroundImgURL).on("load", async function () {
-    $("#backgroundImg").off("load");
-    colorizer = new Colorizer($("#backgroundImg"));
-  })
+  const previewURL = config.backgroundImgURL.replace(/(\.[^.]+)$/, '-preview$1');
+  const fullURL = config.backgroundImgURL;
 
-  // Dropdown menus
+  showProgress(true, 0);
+
+  const previewPromise = new Promise<void>((resolve) => {
+    const previewImg = new Image();
+    previewImg.onload = () => {
+      $("#previewImg").attr("src", previewImg.src);
+      showProgress(true, 30);
+      resolve();
+    };
+    previewImg.onerror = () => {
+      resolve();
+    };
+    previewImg.src = previewURL;
+  });
+
+  const fullPromise = new Promise<void>((resolve) => {
+    const fullImg = new Image();
+    fullImg.onload = () => {
+      fullImageLoaded = true;
+      $("#backgroundImg").attr("src", fullImg.src);
+      showProgress(true, 60);
+
+      $("#backgroundImg").off("load");
+      colorizer = new Colorizer($("#backgroundImg"), () => {
+        showProgress(true, 100);
+        setTimeout(() => {
+          showProgress(false);
+          $("#backgroundImg").css("opacity", "1");
+        }, 300);
+      });
+
+      resolve();
+    };
+    fullImg.onerror = () => {
+      showProgress(false);
+      resolve();
+    };
+    fullImg.src = fullURL;
+  });
+
+  await Promise.all([previewPromise, fullPromise]);
+
   for (var i = 0; i < config.dropdowns.length; i++) {
     const dropdown = config.dropdowns[i];
-    const dropdownI = i; // For closure
+    const dropdownI = i;
     getColors(dropdown.colorsUrl[language]).then((colors: ColorConfig) => {
       $("#controlsContainer").append($(`<div class="lineC"><h2 class="label">${dropdown.labelText[language]}</h2><div id="colorSelect${dropdownI}" class="dropdown"></div></div>`));
       const menu = new Dropdown($(`#colorSelect${dropdownI}`), colors, dropdown.buttonText[language]);

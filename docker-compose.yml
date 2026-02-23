@@ -12,4 +12,4 @@ services:
       - GIN_MODE=release
       - LOG_LEVEL=info
       - DIST_DIR=dist
-      - CONFIGS_DIR=public/configs
+      - CONFIGS_DIR=dist/configs

@@ -180,3 +180,24 @@ p {
     background: #0000008c;
   }
 }
+
+#progressBar {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  min-width: 300px;
+  height: 7px;
+  background: #3c3c3c9e;
+  z-index: 100;
+  border-radius: 3.5px;
+}
+
+#progressBarFill {
+  height: 100%;
+  width: 0%;
+  background: #f0f0f0;
+  transition: width 0.2s ease-out;
+  border-radius: 3.5px;
+}

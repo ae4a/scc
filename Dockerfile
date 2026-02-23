@@ -25,14 +25,11 @@ FROM alpine:latest AS image-processor
 
 WORKDIR /images
 
-# Install ImageMagick
-RUN apk add --no-cache imagemagick
+RUN apk add --no-cache imagemagick imagemagick-jpeg
 
-# Copy images directly from source
 COPY ./public/imgs /images/imgs
 
-# Process all back.JPG/back.jpg images in toys directories
-RUN find /images/imgs/toys -type f \( -name "back.JPG" -o -name "back.jpg" \) | while read img; do \
+RUN find /images/imgs/toys -type f \( -name "back.jpg" -o -name "back.JPG" \) | while read img; do \
     dir=$(dirname "$img"); \
     magick "$img" -resize 200x200 -gaussian-blur 0.05 -quality 50 "$dir/back-preview.jpg"; \
     echo "Processed: $img -> $dir/back-preview.jpg"; \
@@ -50,10 +47,10 @@ COPY --from=go-builder /build/customizer /app/customizer
 COPY --from=frontend-builder /app/dist /app/dist
 
 # Copy configs
-COPY ./public/configs /app/public/configs
+COPY ./public/configs /app/dist/configs
 
 # Copy processed images (with previews) from image-processor
-COPY --from=image-processor /images/imgs /app/public/imgs
+COPY --from=image-processor /images/imgs /app/dist/imgs
 
 EXPOSE 8080
 
