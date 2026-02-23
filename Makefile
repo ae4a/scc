@@ -4,10 +4,19 @@ up:
 	docker compose up -d --build
 
 convert-colors:
-	python3 utils/colors_conv/conv.py utils/colors_conv/en-wool.txt > public/colors/en-wool.json
-	python3 utils/colors_conv/conv.py utils/colors_conv/ru-wool.txt > public/colors/ru-wool.json
-	python3 utils/colors_conv/conv.py utils/colors_conv/ru-fabric.txt > public/colors/ru-fabric.json
-	python3 utils/colors_conv/conv.py utils/colors_conv/en-fabric.txt > public/colors/en-fabric.json
+	cd frontend/utils/colors_conv && \
+	awk ' \
+		BEGIN { \
+			word["maori-batts.txt"] = "| Maori batts"; \
+			word["mc-1.txt"] = "| MC-1"; \
+			word["bergschaf.txt"] = "| Bergschaf"; \
+			word["nz-corriedale.txt"] = "| nz corriedale"; \
+		} \
+		{ print $$0, word[FILENAME] } \
+	' maori-batts.txt mc-1.txt bergschaf.txt nz-corriedale.txt | python3 conv.py --sort-hue > ../../../public/colors/en-wool.json
+	cat frontend/utils/colors_conv/ru-wool.txt | python3 frontend/utils/colors_conv/conv.py > public/colors/ru-wool.json
+	cat frontend/utils/colors_conv/ru-fabric.txt | python3 frontend/utils/colors_conv/conv.py > public/colors/ru-fabric.json
+	cat frontend/utils/colors_conv/en-fabric.txt | python3 frontend/utils/colors_conv/conv.py > public/colors/en-fabric.json
 
 preview:
 	vite preview
