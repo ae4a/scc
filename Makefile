@@ -3,7 +3,7 @@ all: up
 build:
 	vite build
 
-up: build
+up:
 	docker compose up -d --build
 
 convert-colors:

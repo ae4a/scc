@@ -1,6 +1,4 @@
-import { SupportedLang } from "./scheme";
-
-export var language: SupportedLang = "en";
+export var language: string = "en";
 
 export async function setupLang(): Promise<void> {
   const lang = localStorage.getItem('preferredLang') || navigator.language || navigator.languages[0];
@@ -23,7 +21,7 @@ export async function setupLang(): Promise<void> {
 }
 
 export function setLang(lang: string) {
-  language = lang as SupportedLang
+  language = lang
 }
 
 $("#languageSelect").on("change", function () {

@@ -1,6 +1,4 @@
-export type SupportedLang = "en" | "ru";
-
-export type MultiLangString = { [key in SupportedLang]: string; };
+export type MultiLangString = Record<string, string>;
 
 export interface Config {
   name: string; // For internal use

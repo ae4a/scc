@@ -4,7 +4,7 @@
   "description": "Sheep color customizer",
   "main": "index.ts",
   "scripts": {
-    "build": "node esbuild.js"
+    "build": "vite build"
   },
   "author": "AE4",
   "license": "ISC",
