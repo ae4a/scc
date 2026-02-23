@@ -5,15 +5,15 @@
     "ru": "Кастомайзер летучей мыши | Acicularis" 
   },
   "titleURL": "https://school.acicularis.com/edward",
-  "backgroundImgURL": "/imgs/toys/edward/back.JPG",
+  "backgroundImgURL": "/imgs/toys/edward/back.jpg",
   "masks": {
     "wings": {
-      "imgURL": "/imgs/toys/edward/wings_mask.JPG",
+      "imgURL": "/imgs/toys/edward/wings_mask.jpg",
       "compensation": 0.4
     },
     "body": {
-      "imgURL": "/imgs/toys/edward/body_mask2.JPG",
-      "compensation": 0.2
+      "imgURL": "/imgs/toys/edward/body_mask2.jpg",
+      "compensation": 0.1
     }
   },
   "dropdowns": [
