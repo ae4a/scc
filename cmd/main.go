@@ -47,7 +47,7 @@ func main() {
 	r.Static("/assets", filepath.Join(cfg.DistDir, "assets"))
 	r.Static("/colors", filepath.Join(cfg.DistDir, "colors"))
 	r.Static("/fonts", filepath.Join(cfg.DistDir, "fonts"))
-	r.Static("/img", filepath.Join(cfg.DistDir, "img"))
+	r.Static("/imgs", filepath.Join(cfg.DistDir, "imgs"))
 	r.StaticFile("/favicon.ico", filepath.Join(cfg.DistDir, "favicon.ico"))
 
 	// Serve configs directory

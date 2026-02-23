@@ -5,14 +5,14 @@
     "ru": "Кастомайзер овцы | Acicularis"
   },
   "titleURL": "https://school.acicularis.com/ovechka",
-  "backgroundImgURL": "/img/sheep/back.jpg",
+  "backgroundImgURL": "/imgs/toys/sheep/back.jpg",
   "masks": {
     "wool": {
-      "imgURL": "/img/sheep/wool_mask.jpg",
+      "imgURL": "/imgs/toys/sheep/wool_mask.jpg",
       "compensation": 0.0
     },
     "skin": {
-      "imgURL": "/img/sheep/skin_mask.jpg",
+      "imgURL": "/imgs/toys/sheep/skin_mask.jpg",
       "compensation": 0.0
     }
   },
