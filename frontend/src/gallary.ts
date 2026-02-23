@@ -1,6 +1,6 @@
 import "./style.css";
 
-import { language, setupLang } from "./config/lang";
+import { language, setupLang, getLanguagePrefix } from "./config/lang";
 import { MultiLangString } from "./config/scheme";
 
 // @ts-ignore
@@ -27,18 +27,42 @@ const config: Config = {
   "horntail": {
     "en": "Bulgarian horntail",
     "ru": "Болгарская хвосторога"
+  },
+  "dragon2": {
+    "en": "Dragon",
+    "ru": "Дракон"
   }
 };
 
 async function main() {
   await setupLang();
 
+  // If visiting root or just language, update URL to include language
+  const pathParts = window.location.pathname.split("/").filter(p => p.length > 0);
+  
+  // Detect if a string looks like a language code
+  const looksLikeLanguageCode = (str: string) => /^[a-z]{2,3}$/i.test(str);
+  
+  if (pathParts.length === 0) {
+    // Root path: / -> /en (or detected language)
+    const newPath = "/" + getLanguagePrefix();
+    window.history.replaceState({}, "", newPath);
+    console.log("DEBUG: Updated URL from / to " + newPath);
+  } else if (pathParts.length === 1 && !looksLikeLanguageCode(pathParts[0])) {
+    // Some other single segment that's not a language code
+    // This shouldn't happen on gallery page, but handle it anyway
+    const newPath = "/" + getLanguagePrefix();
+    window.history.replaceState({}, "", newPath);
+    console.log("DEBUG: Updated URL to " + newPath);
+  }
+
   Object.keys(config).forEach(key => {
     let obj = $(`#${key}ItemOverlay`);
 
-    obj.text(config[key][language]);
+    obj.text(config[key][language] || config[key]["en"] || key);
     obj.on("click", () => {
-      window.location.pathname = "/" + key;
+      // Navigate with language prefix
+      window.location.pathname = "/" + getLanguagePrefix() + "/" + key;
     });
   });
 }

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -59,17 +58,32 @@ func main() {
 		c.File(filepath.Join(cfg.DistDir, "frontend", "html", "gallary.html"))
 	})
 
-	// Dynamic routes for pages in configs
-	for _, page := range availablePages {
-		pageName := page
-		r.GET("/"+pageName, func(c *gin.Context) {
+	// Single segment: could be language code or page name
+	r.GET("/:segment", func(c *gin.Context) {
+		segment := c.Param("segment")
+
+		// Check if this is a known page name (config exists)
+		isKnownPage := false
+		for _, page := range availablePages {
+			if segment == page {
+				isKnownPage = true
+				break
+			}
+		}
+
+		if isKnownPage {
+			// It's a page name, serve editor
 			c.File(filepath.Join(cfg.DistDir, "frontend", "html", "editor.html"))
-		})
-		// Redirect any subpaths to the main page
-		r.GET("/"+pageName+"/*any", func(c *gin.Context) {
-			c.Redirect(http.StatusMovedPermanently, "/"+pageName)
-		})
-	}
+		} else {
+			// Assume it's a language code, serve gallery
+			c.File(filepath.Join(cfg.DistDir, "frontend", "html", "gallary.html"))
+		}
+	})
+
+	// Two segments: language + page (e.g., /en/edward, /ru/sheep, /fr/horntail)
+	r.GET("/:segment/:page", func(c *gin.Context) {
+		c.File(filepath.Join(cfg.DistDir, "frontend", "html", "editor.html"))
+	})
 
 	// 404 handler for all other routes
 	r.NoRoute(func(c *gin.Context) {
