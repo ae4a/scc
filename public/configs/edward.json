@@ -1,18 +1,18 @@
 {
-  "name": "bat",
+  "name": "edward",
   "titleText": {
-    "en": "Bat color customizer | Acicularis",
+    "en": "Edward customizer | Acicularis",
     "ru": "Кастомайзер летучей мыши | Acicularis" 
   },
   "titleURL": "https://school.acicularis.com/edward",
-  "backgroundImgURL": "/img/bat/back.JPG",
+  "backgroundImgURL": "/img/edward/back.JPG",
   "masks": {
     "wings": {
-      "imgURL": "/img/bat/wings_mask.JPG",
+      "imgURL": "/img/edward/wings_mask.JPG",
       "compensation": 0.4
     },
     "body": {
-      "imgURL": "/img/bat/body_mask2.JPG",
+      "imgURL": "/img/edward/body_mask2.JPG",
       "compensation": 0.2
     }
   },

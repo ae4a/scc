@@ -1,5 +1,3 @@
-import batConfig from '../../../public/configs/bat.json';
-
 // Some preloaded colors
 //import woolColors from '../../public/colors/wool.json'
 // import skinColors from '../dist/colors/skin.json'
@@ -7,7 +5,7 @@ import batConfig from '../../../public/configs/bat.json';
 import { DropdownOption } from '../dropdown/dropdown';
 import { Config } from './scheme';
 
-export var config: Config = batConfig; // TODO change to some other default config
+export var config: Config; // TODO change to some other default config
 
 export interface ColorConfig {
   palette: DropdownOption[],
@@ -22,8 +20,6 @@ async function getConfig(name: string): Promise<Config | undefined> {
   if (!name) {
     return undefined;
   }
-
-  if (name == "bat") { return batConfig; }
 
   return $.getJSON(`/configs/${name}.json`);
 }
