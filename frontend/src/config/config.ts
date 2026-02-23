@@ -30,6 +30,28 @@ function looksLikeLanguageCode(str: string): boolean {
   return /^[a-z]{2,3}$/i.test(str);
 }
 
+// Get available languages from config's titleText
+function getAvailableLanguages(cfg: Config): string[] {
+  if (!cfg.titleText) return ["en"];
+  return Object.keys(cfg.titleText);
+}
+
+// Find best language match from available languages
+function findBestLanguage(detectedLang: string, availableLanguages: string[]): string {
+  // If detected language is available, use it
+  if (availableLanguages.includes(detectedLang)) {
+    return detectedLang;
+  }
+  
+  // Fallback to "en" if available
+  if (availableLanguages.includes("en")) {
+    return "en";
+  }
+  
+  // Otherwise use first available language
+  return availableLanguages[0];
+}
+
 export async function setupConfig(): Promise<void> {
   // Look for config name - handle both /page and /lang/page formats
   const pathParts = window.location.pathname.split("/").filter(p => p.length > 0);
@@ -57,12 +79,39 @@ export async function setupConfig(): Promise<void> {
   }
   config = cfg as Config;
 
+  // Get available languages from this config
+  const availableLanguages = getAvailableLanguages(config);
+  
   // If URL doesn't have language, add it without redirect
   if (!hasLanguageInURL) {
     const detectedLang = getLanguagePrefix();
-    const newPath = "/" + detectedLang + "/" + name;
+    const validLang = findBestLanguage(detectedLang, availableLanguages);
+    
+    // Update global language variable to the valid one
+    import('./lang').then(module => {
+      module.language = validLang;
+    });
+    
+    const newPath = "/" + validLang + "/" + name;
     window.history.replaceState({}, "", newPath);
+    console.log("DEBUG: Detected lang '" + detectedLang + "', available: [" + availableLanguages.join(", ") + "], using '" + validLang + "'");
     console.log("DEBUG: Updated URL from /" + name + " to " + newPath);
+  } else {
+    // URL has language, validate it against available languages
+    const urlLang = pathParts[0];
+    const validLang = findBestLanguage(urlLang, availableLanguages);
+    
+    if (urlLang !== validLang) {
+      // Language in URL is not available, redirect to valid one
+      import('./lang').then(module => {
+        module.language = validLang;
+      });
+      
+      const newPath = "/" + validLang + "/" + name;
+      window.history.replaceState({}, "", newPath);
+      console.log("DEBUG: Language '" + urlLang + "' not available, using '" + validLang + "'");
+      console.log("DEBUG: Updated URL to " + newPath);
+    }
   }
 
   // Validating

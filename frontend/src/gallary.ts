@@ -37,6 +37,23 @@ const config: Config = {
 async function main() {
   await setupLang();
 
+  // Get available languages from gallery config (check what languages are defined)
+  const availableLanguages = new Set<string>();
+  Object.keys(config).forEach(key => {
+    Object.keys(config[key]).forEach(lang => {
+      availableLanguages.add(lang);
+    });
+  });
+  const availableLangsArray = Array.from(availableLanguages);
+
+  // Find best language match
+  let validLang = language;
+  if (!availableLanguages.has(language)) {
+    // Fallback to en if available, otherwise first available
+    validLang = availableLanguages.has("en") ? "en" : availableLangsArray[0];
+    console.log("DEBUG: Gallery - language '" + language + "' not available, using '" + validLang + "'");
+  }
+
   // If visiting root or just language, update URL to include language
   const pathParts = window.location.pathname.split("/").filter(p => p.length > 0);
   
@@ -45,24 +62,31 @@ async function main() {
   
   if (pathParts.length === 0) {
     // Root path: / -> /en (or detected language)
-    const newPath = "/" + getLanguagePrefix();
+    const newPath = "/" + validLang;
     window.history.replaceState({}, "", newPath);
     console.log("DEBUG: Updated URL from / to " + newPath);
   } else if (pathParts.length === 1 && !looksLikeLanguageCode(pathParts[0])) {
     // Some other single segment that's not a language code
     // This shouldn't happen on gallery page, but handle it anyway
-    const newPath = "/" + getLanguagePrefix();
+    const newPath = "/" + validLang;
     window.history.replaceState({}, "", newPath);
     console.log("DEBUG: Updated URL to " + newPath);
+  } else if (pathParts.length === 1 && looksLikeLanguageCode(pathParts[0])) {
+    // Validate the language in URL
+    if (!availableLanguages.has(pathParts[0])) {
+      const newPath = "/" + validLang;
+      window.history.replaceState({}, "", newPath);
+      console.log("DEBUG: Language '" + pathParts[0] + "' not available in gallery, using '" + validLang + "'");
+    }
   }
 
   Object.keys(config).forEach(key => {
     let obj = $(`#${key}ItemOverlay`);
 
-    obj.text(config[key][language] || config[key]["en"] || key);
+    obj.text(config[key][validLang] || config[key]["en"] || Object.values(config[key])[0] || key);
     obj.on("click", () => {
       // Navigate with language prefix
-      window.location.pathname = "/" + getLanguagePrefix() + "/" + key;
+      window.location.pathname = "/" + validLang + "/" + key;
     });
   });
 }
