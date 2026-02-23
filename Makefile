@@ -21,7 +21,7 @@ convert-colors:
 preview:
 	vite preview
 
-push:
+push-develop:
 	docker buildx build --platform linux/amd64 -t scc-develop:amd64 .
 	docker save -o scc-develop.img scc-develop:amd64
 	rsync ./scc-develop.img mys:acicularis.com/imgs/

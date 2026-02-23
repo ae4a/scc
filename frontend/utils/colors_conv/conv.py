@@ -3,12 +3,37 @@ import argparse
 import colorsys
 
 
-def hex_to_hue(hex_color):
-    """Convert hex color to HSV hue value for sorting"""
+def color_sort_key(hex_color):
+    """
+    Sort colors in a visually pleasing way:
+    1. Group blacks/grays/whites first (achromatic)
+    2. Then chromatic colors in rainbow order (red->orange->yellow->green->cyan->blue->purple)
+    3. Within each group, sort by saturation and lightness for smooth transitions
+    """
     hex_color = hex_color.lstrip("#")
     r, g, b = tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
     h, s, v = colorsys.rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
-    return h
+
+    # Low saturation colors (grays, near-whites, near-blacks)
+    if s < 0.15:
+        # Sort achromatic colors by lightness (dark to light)
+        # Use group 0 to put them first
+        return (0, v, 0, 0)
+
+    # Low value colors (very dark, nearly black) even if slightly saturated
+    if v < 0.15:
+        return (0, v, 0, 0)
+
+    # High value + low saturation (near-white pastels)
+    if v > 0.90 and s < 0.25:
+        return (0, v, 0, 0)
+
+    # Chromatic colors - sort by hue in rainbow order
+    # Adjust hue for better visual sorting:
+    # - Red starts at 0
+    # - We want smooth progression through rainbow
+    # Secondary sort by saturation (more saturated first) then value
+    return (1, h, -s, -v)
 
 
 def parse_args():
@@ -45,7 +70,7 @@ def main():
 
     # Sort by hue if requested
     if args.sort_hue:
-        colors.sort(key=lambda c: hex_to_hue(c["color"]))
+        colors.sort(key=lambda c: color_sort_key(c["color"]))
 
     # Build JSON output
     palette_items = []
