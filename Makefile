@@ -24,7 +24,7 @@ preview:
 push-develop:
 	docker buildx build --platform linux/amd64 -t scc-develop:amd64 .
 	docker save -o scc-develop.img scc-develop:amd64
-	rsync ./scc-develop.img mys:acicularis.com/imgs/
+	rsync --progress --compress ./scc-develop.img mys:acicularis.com/imgs/
 	ssh mys "cd acicularis.com; docker load -i imgs/scc-develop.img;  docker compose up -d scc-develop"
 
 publish-release:

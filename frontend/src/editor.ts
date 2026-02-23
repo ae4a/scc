@@ -74,7 +74,7 @@ async function main() {
         setTimeout(() => {
           showProgress(false);
           $("#backgroundImg").css("opacity", "1");
-        }, 300);
+        }, 100);
       });
 
       resolve();
