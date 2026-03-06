@@ -31,6 +31,6 @@ push-develop:
 publish-release:
 	docker buildx build --platform linux/amd64 -t scc-release:amd64 .
 	docker save -o scc-release.img scc-release:amd64
-	rsync ./scc-release.img mys:acicularis.com/imgs/
+	rsync --progress --compress ./scc-release.img mys:acicularis.com/imgs/
 	ssh mys "cd acicularis.com; docker load -i imgs/scc-release.img;  docker compose up -d scc-release"
 	ntfy

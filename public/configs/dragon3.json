@@ -5,14 +5,14 @@
     "ru": "Dragon 3 | Acicularis" 
   },
   "titleURL": "https://school.acicularis.com/edward",
-  "backgroundImgURL": "/imgs/toys/dragon3/back20.jpg",
+  "backgroundImgURL": "/imgs/toys/dragon3/back30.jpg",
   "masks": {
     "mask1": {
-      "imgURL": "/imgs/toys/dragon3/mask_10.jpg",
+      "imgURL": "/imgs/toys/dragon3/mask_11.jpg",
       "compensation": 0.0
     },
     "mask2": {
-      "imgURL": "/imgs/toys/dragon3/mask_20.jpg",
+      "imgURL": "/imgs/toys/dragon3/mask_21.jpg",
       "compensation": 0.0
     }
   },

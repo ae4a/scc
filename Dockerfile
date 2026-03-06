@@ -32,7 +32,7 @@ COPY ./public/imgs /images/imgs
 RUN find /images/ -type f -name "*.jpg" | while read img; do \
     dest="/processed$img"; \
     mkdir -p "$(dirname "$dest")"; \
-    magick "$img" -resize 2048x2048 -gaussian-blur 0.05 -quality 90 "$dest"; \
+    magick "$img" -resize 2048x2048  -quality 90 "$dest"; \
     echo "Processed: $img -> $dest"; \
     done
 
