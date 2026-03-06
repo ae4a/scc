@@ -1,0 +1,62 @@
+{
+  "name": "dragon3",
+  "titleText": {
+    "en": "Dragon 3 | Acicularis",
+    "ru": "Dragon 3 | Acicularis" 
+  },
+  "titleURL": "https://school.acicularis.com/edward",
+  "backgroundImgURL": "/imgs/toys/dragon3/back.jpg",
+  "masks": {
+    "mask1": {
+      "imgURL": "/imgs/toys/dragon3/mask_1.jpg",
+      "compensation": 0.0
+    },
+    "mask2": {
+      "imgURL": "/imgs/toys/dragon3/mask_2.jpg",
+      "compensation": 0.0
+    }
+  },
+  "dropdowns": [
+    {
+      "mask": "mask1",
+      "labelText": {
+        "en": "Head and body:",
+        "ru": "Голова и тело:"
+      },
+      "buttonText": {
+        "en": "Choose color",
+        "ru": "Выберите цвет"
+      },
+      "colorsUrl": {
+        "en": "/colors/en-wool.json",
+        "ru": "/colors/ru-wool.json"
+      }
+    },
+    {
+      "mask": "mask2",
+      "labelText": {
+        "en": "Ears and wings:",
+        "ru": "Уши и крылья:"
+      },
+      "buttonText": {
+        "en": "Choose color",
+        "ru": "Выберите цвет"
+      },
+      "colorsUrl": {
+        "en": "/colors/en-wool.json",
+        "ru": "/colors/ru-wool.json"
+      }
+    }
+  ],
+  "grayCompensation": 1.0,
+  "computeFrame": {
+    "start": {
+      "x": 0,
+      "y": 0
+    },
+    "end": {
+      "x": 1,
+      "y": 1
+    }
+  }
+}
