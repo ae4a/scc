@@ -8,11 +8,11 @@
   "backgroundImgURL": "/imgs/toys/dragon3/back31.jpg",
   "masks": {
     "mask1": {
-      "imgURL": "/imgs/toys/dragon3/mask_11.jpg",
+      "imgURL": "/imgs/toys/dragon3/mask_12.jpg",
       "compensation": 0.0
     },
     "mask2": {
-      "imgURL": "/imgs/toys/dragon3/mask_21.jpg",
+      "imgURL": "/imgs/toys/dragon3/mask_22.jpg",
       "compensation": 0.0
     }
   },

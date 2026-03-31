@@ -5,35 +5,49 @@ import colorsys
 
 def color_sort_key(hex_color):
     """
-    Sort colors in a visually pleasing way:
-    1. Group blacks/grays/whites first (achromatic)
-    2. Then chromatic colors in rainbow order (red->orange->yellow->green->cyan->blue->purple)
-    3. Within each group, sort by saturation and lightness for smooth transitions
+    Sort colors using a balanced spectrum approach:
+    1. Separate neutrals (low saturation) and place them at the end
+    2. Primary Sort: By Hue (0-360°) for visible rainbow progression
+    3. Secondary Sort: By Lightness for smooth transitions within each hue
+    4. Balanced weighting for smooth yet colorful gradients
     """
     hex_color = hex_color.lstrip("#")
     r, g, b = tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
-    h, s, v = colorsys.rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
 
-    # Low saturation colors (grays, near-whites, near-blacks)
+    # Convert to HSL (Hue, Saturation, Lightness) for better perceptual sorting
+    h, l, s = colorsys.rgb_to_hls(r / 255.0, g / 255.0, b / 255.0)
+
+    # Calculate perceived luminosity for more professional sorting
+    # Using relative luminance formula (ITU-R BT.709)
+    luminosity = 0.2126 * r / 255.0 + 0.7152 * g / 255.0 + 0.0722 * b / 255.0
+
+    # Identify neutrals (low saturation colors: blacks, grays, whites)
+    # Place them at the end with very high group number
     if s < 0.15:
-        # Sort achromatic colors by lightness (dark to light)
-        # Use group 0 to put them first
-        return (0, v, 0, 0)
+        # Sort neutrals by lightness (dark to light)
+        # Group 2 ensures they come after chromatic colors
+        return (2, l, 0, 0)
 
-    # Low value colors (very dark, nearly black) even if slightly saturated
-    if v < 0.15:
-        return (0, v, 0, 0)
+    # Very dark colors (nearly black) even if slightly saturated
+    if l < 0.1:
+        return (2, l, 0, 0)
 
-    # High value + low saturation (near-white pastels)
-    if v > 0.90 and s < 0.25:
-        return (0, v, 0, 0)
+    # Very light colors (nearly white) with low saturation
+    if l > 0.95 and s < 0.2:
+        return (2, l, 0, 0)
 
-    # Chromatic colors - sort by hue in rainbow order
-    # Adjust hue for better visual sorting:
-    # - Red starts at 0
-    # - We want smooth progression through rainbow
-    # Secondary sort by saturation (more saturated first) then value
-    return (1, h, -s, -v)
+    # Chromatic colors - balanced approach for visible hue changes with smooth gradients
+    # Group 1: Main chromatic colors
+    # Convert hue from 0-1 to 0-360 degrees for clarity (colorsys uses 0-1 range)
+    hue_degrees = h * 360
+
+    # Quantize hue into broader bands (every ~10 degrees) to allow lightness to matter
+    # This creates visible hue progression while allowing smooth lightness transitions
+    hue_band = hue_degrees // 10
+
+    # Within each hue band, sort by lightness (light to dark)
+    # Then by exact hue for fine-tuning
+    return (1, hue_band, -l, hue_degrees)
 
 
 def parse_args():
